@@ -1,29 +1,18 @@
 # ff14-notes
 
-FF14（学者メイン、Razer Naga 12ボタンマウス）の個人メモ。
+FF14（学者メイン、Razer Naga 12ボタンマウス）の個人メモ。ツールは `ff14-hotkey-tool`。
 
 ## 中身
 
 | パス | 何 |
 | --- | --- |
-| `hotbar/index.html` | ホットバーシミュレーター。ブラウザで開くだけで動く（単一ファイル、アイコン埋め込み済み） |
-| `hotbar/template.html` | シミュレーターのソース（`__ICONS__` / `__GEN__` にデータを差し込む） |
-| `hotbar/actions.json` | 公式ジョブガイドから取ったアクション名・Lv・アイコン（base64） |
-| `hotbar/general_icons.json` | LB・追従・移動・強化薬・食事のアイコン |
-| `hotbar/build.py` | template + json → index.html |
-| `hotbar/fetch_icons.py` | 公式サイトからアイコンを取り直す（パッチでアクションが変わった時用） |
 | `macros/FF14_macros.txt` | マクロ全文。ゲーム内に貼り付けて使う |
 | `docs/*.md` | ドキュメント（Claude Docs からの書き出し） |
 | `docs/html/` | 同じ内容の HTML 版（オフラインで読む用） |
 
-## ホットバーシミュレーターの使い方
+## ホットバーシミュレーター
 
-1. `hotbar/index.html` を開く
-2. 左の一覧から枠へドラッグ。枠同士もドラッグで入れ替え。× かダブルクリックで空に
-3. 「配置をテキストでコピー」で 4列×3段のテキストが出る
-4. 配置はブラウザに自動保存される。「初期配置に戻す」でドキュメントの最終形に戻る
-
-更新手順：`template.html` を編集 → `python3 hotbar/build.py` → `index.html` をコミット。
+別リポジトリ `ff14-hotkey-tool` にある。配置の最終形は `docs/05_settings.md` と同期させる。
 
 ## ドキュメント
 
