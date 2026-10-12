@@ -1,0 +1,336 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FF14 ロードマップ</title><style>
+:root{--bg:#fbfaf7;--fg:#222;--muted:#666;--line:#ddd;--accent:#8a5a2b;--code:#f1efe9}
+@media (prefers-color-scheme:dark){:root{--bg:#1b1b1d;--fg:#e8e6e1;--muted:#9a9a9a;--line:#3a3a3d;--accent:#d9a86c;--code:#2a2a2e}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Meiryo","Noto Sans JP",system-ui,sans-serif;line-height:1.75;font-size:16px}
+main{max-width:860px;margin:0 auto;padding:32px 16px 64px}
+nav.top{font-size:14px;color:var(--muted);margin-bottom:8px}
+nav.top a{color:var(--accent);text-decoration:none}
+h1{font-size:1.8em;border-bottom:2px solid var(--accent);padding-bottom:6px;margin-top:0}
+h2{font-size:1.35em;margin-top:2em;border-left:5px solid var(--accent);padding-left:10px}
+h3{font-size:1.1em;margin-top:1.5em}
+a{color:var(--accent)}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14.5px;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:6px 10px;vertical-align:top;text-align:left}
+th{background:var(--code)}
+code{background:var(--code);padding:1px 5px;border-radius:4px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+pre{background:var(--code);padding:12px 14px;border-radius:8px;overflow-x:auto;border:1px solid var(--line)}
+pre code{background:none;padding:0}
+ul,ol{padding-left:1.5em}
+li{margin:3px 0}
+input[type=checkbox]{margin-right:6px;transform:scale(1.15)}
+footer{margin-top:48px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:12px}
+</style></head><body><main><nav class="top"><a href="00_index.html">FF14 ドキュメント索引</a> · <a href="01_naming.html">Tomatopii 命名リスト</a> · <a href="02_macros.html">FF14 マクロ集</a> · <a href="03_roadmap.html">FF14 ロードマップ</a> · <a href="04_events.html">FF14 開催中イベントまとめ（2026年10月）</a> · <a href="05_settings.html">FF14 設定・ギアセット・QoLまとめ</a> · <a href="06_irreversible.html">FF14 取り返しのつかない要素</a> · <a href="07_scholar_skills.html">FF14 学者（Scholar）アクション・特性リファレンス（パッチ7.5時点 / 2026年10月調査）</a></nav><h1>FF14 ロードマップ</h1>
+<p>Oct 8, 2026 · @tomatopii</p>
+<p>最優先はメインシナリオ。全ジョブカンストはシナリオを終えた後の長期目標として、ルーレットで自然に進める。</p>
+<h2>全体像</h2>
+<p>優先順位は「メインシナリオ ＞ ヒーラー1ジョブを育てる ＞ 装備更新 ＞ その他」。全ジョブカンストはシナリオ完走後に、ルーレットの経験値で自然に進める長期目標。</p>
+<table>
+<thead>
+<tr>
+<th>順</th>
+<th>やること</th>
+<th>ゴール</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>メインシナリオ</td>
+<td>新生→蒼天→紅蓮→漆黒→暁月→黄金 の完走</td>
+</tr>
+<tr>
+<td>2</td>
+<td>ヒーラー1ジョブ</td>
+<td>白魔道士か学者をメインに据えて、シナリオと一緒に上げる</td>
+</tr>
+<tr>
+<td>3</td>
+<td>装備更新</td>
+<td>各拡張のトークン装備で止まらずに進む</td>
+</tr>
+<tr>
+<td>4</td>
+<td>リテイナー・FC</td>
+<td>片手間で回す</td>
+</tr>
+<tr>
+<td>5</td>
+<td>全ジョブカンスト</td>
+<td>シナリオ後、ルーレットで1ジョブずつ</td>
+</tr>
+</tbody>
+</table>
+<p><strong>やらないこと（当面）</strong></p>
+<ul>
+<li>マケボで装備を買う</li>
+<li>複数ジョブの同時育成</li>
+<li>極・零式（シナリオ完走まで触らなくていい）</li>
+<li>2キャラ目（Tomatopii Zulu 1体に集中）</li>
+</ul>
+<h2>8.0『白銀のワンダラー』で変わること（2027年1月）</h2>
+<p>追いつく頃には新システムになっている。影響する項目と、その時に見直す文書。</p>
+<table>
+<thead>
+<tr>
+<th>変更</th>
+<th>内容</th>
+<th>見直す文書</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>デイリー→ウィークリー</td>
+<td>ルーレットの日課圧が軽くなる。「アドベンチャラーアクティビティー」で週単位管理。トームストーンは2週分まで貯め直し可</td>
+<td>ロードマップ「全ジョブカンスト」、日課・週課</td>
+</tr>
+<tr>
+<td>ILコピー</td>
+<td>最高ILを他ジョブに写せる（同レベルのジョブ間、マテリア・サブステは別）</td>
+<td>装備更新、全ジョブカンストの進め方</td>
+</tr>
+<tr>
+<td>リボーン／エヴォルヴ</td>
+<td>既存ジョブに2モード。エヴォルヴは16ボタン前後、Lv50で全アクションが揃う、基本コンボ1ボタン。白魔はGCD回復で火力が乗る設計、基本攻撃が無詠唱</td>
+<td>設定まとめ「12ボタンの層」、白魔のスキル</td>
+</tr>
+<tr>
+<td>シナジー削除</td>
+<td>味方火力バフが両モードで削除・変更。120秒周期の縛りがなくなる</td>
+<td>ヒーラーの立ち回り</td>
+</tr>
+<tr>
+<td>バランスアジャスト</td>
+<td>敵・コンテンツ難度を自動調整。「ILが足りなくて進めない」が消える方向</td>
+<td>装備更新</td>
+</tr>
+<tr>
+<td>メイン攻略順の自由化</td>
+<td>中盤は順不同。結末への影響は小</td>
+<td>フェーズ4以降</td>
+</tr>
+<tr>
+<td>新中間難度</td>
+<td>ノーマルと零式の間。極と同程度か少し易しい</td>
+<td>フェーズ4「エンドコンテンツ」</td>
+</tr>
+<tr>
+<td>リージョン内フリーマッチング</td>
+<td>DCの壁がなくなる。日本で10/12に先行テスト</td>
+<td>—</td>
+</tr>
+<tr>
+<td>コンテンツサポーター2人対応、バディチョコボ刷新</td>
+<td>2人＋チョコボ2匹でID（8.1以降）</td>
+<td>FCの友達と遊ぶ時</td>
+</tr>
+<tr>
+<td>新ジョブ</td>
+<td>バスティオン（タンク、Lv90開始、リムサ）、物理レンジDPS（未発表）</td>
+<td>全ジョブカンスト（23ジョブに）</td>
+</tr>
+<tr>
+<td>Lv上限110</td>
+<td>—</td>
+<td>全体</td>
+</tr>
+</tbody>
+</table>
+<p>8.0までは現行の文書のまま。発売前の「エヴォルヴ特集生放送（4時間規模）」と日本ファンフェス（10/31）の後に更新する。</p>
+<h2>フェーズ1：今〜Lv50（新生エオルゼア クリア）</h2>
+<p>ヒーラーへの切替はここで済ませる。幻術士（白魔）か巴術士（学者）をLv30まで上げ、以降はヒーラーでメインを進める。</p>
+<ul>
+<li><input type=checkbox> 幻術士 or 巴術士 をギルドで取得（グリダニアの幻術士ギルド / リムサの巴術士ギルド）</li>
+<li><input type=checkbox> Lv15・30のクラスクエスト → Lv30でジョブ取得（白魔道士 / 学者）</li>
+<li><input type=checkbox> 今のクラスのLv30ジョブクエストも済ませておく（ソウルクリスタル）</li>
+<li><input type=checkbox> 初心者の館（Lv15〜）のヒーラー課題をクリア</li>
+<li><input type=checkbox> ヒーラー用のHUD・マクロ（マウスオーバー）を整える</li>
+<li><input type=checkbox> リテイナー Alpha-Zulu（戦闘）を雇用、ベンチャー「探索」を回す</li>
+<li><input type=checkbox> Lv45・50のジョブクエストでAF装備を受け取る</li>
+<li><input type=checkbox> 新生メインシナリオ完走（Lv50、「究極幻想アルテマウェポン」まで）</li>
+</ul>
+<p>レベルが詰まったら：コンテンツルーレット（レベリング・初心者）→ サブクエ → FATE の順。</p>
+<h2>フェーズ2：新生後日談〜蒼天のイシュガルド（Lv50〜60）</h2>
+<p>一番だれる区間。新生の後日談（パッチ2.1〜2.55）は約100クエストあり経験値も少ないが、蒼天への直接の前振りなので飛ばさない。</p>
+<ul>
+<li><input type=checkbox> 新生後日談を完走（クリスタルタワー3部作はメインに組み込まれているので必ず通る）</li>
+<li><input type=checkbox> Lv50でポエティックトームストーン装備に更新（ルーレットで貯まる）</li>
+<li><input type=checkbox> 蒼天に入ったら、各エリアで<strong>風脈</strong>を集めてフライング解放</li>
+<li><input type=checkbox> Lv50の時点で<strong>占星術師</strong>が解放可能（イシュガルドで受注）。ヒーラー2つ目が欲しければここで</li>
+<li><input type=checkbox> 蒼天メイン完走（Lv60）、後日談（3.1〜3.5）も完走</li>
+</ul>
+<p>評判が一気に良くなるのは蒼天から。ここまで来れば以降は惰性で進む。</p>
+<h2>フェーズ3：紅蓮・漆黒・暁月（Lv60〜90）</h2>
+<p>各拡張とも流れは同じ：メイン完走 → 後日談完走 → トークン装備で更新。拡張ごとの固有ポイントだけ押さえる。</p>
+<table>
+<thead>
+<tr>
+<th>拡張</th>
+<th>Lv</th>
+<th>ヒーラー関連</th>
+<th>注意点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>紅蓮のリベレーター</td>
+<td>60→70</td>
+<td>特になし</td>
+<td>水中移動が追加。クガネ・ドマの風脈集め</td>
+</tr>
+<tr>
+<td>漆黒のヴィランズ</td>
+<td>70→80</td>
+<td><strong>賢者</strong>がLv70で解放（限界都市リンサ）</td>
+<td><strong>ロールクエスト</strong>を進めないとメインが止まる。ヒーラー用ロールクエを選ぶ</td>
+</tr>
+<tr>
+<td>暁月のフィナーレ</td>
+<td>80→90</td>
+<td>特になし</td>
+<td>新生〜漆黒の物語が完結。ここまでのストーリーを覚えているほど刺さる</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><input type=checkbox> 紅蓮メイン＋後日談（4.x）完走</li>
+<li><input type=checkbox> 漆黒メイン＋後日談（5.x）完走、ヒーラーのロールクエスト完走</li>
+<li><input type=checkbox> 暁月メイン＋後日談（6.x）完走</li>
+<li><input type=checkbox> 各拡張のアライアンスレイド（24人）を1周（メインとは別だが装備更新に便利）</li>
+</ul>
+<p>漆黒・暁月は長期間ネタバレを踏まないよう、FCで進行度を伝えておく。</p>
+<h2>フェーズ4：黄金のレガシー（Lv90〜100）とエンドコンテンツ</h2>
+<p>現行の最新拡張。ここで初めて「他のみんなと同じ場所」に立つ。以降は週単位のルーティンになる。</p>
+<ul>
+<li><input type=checkbox> 黄金メイン完走（Lv100）、後日談（7.x）を最新まで</li>
+<li><input type=checkbox> 最新のトークン装備で更新。週制限トークンは毎週上限まで</li>
+<li><input type=checkbox> 週課：アライアンスレイド1回、ルーレット、FC・友達との極</li>
+</ul>
+<p><strong>エンドコンテンツの入り方（興味が出たら）</strong></p>
+<ol>
+<li>極（8人）：FCや友達と。ヒーラーは「死なせない＋ギミック回避」がそのまま評価になる</li>
+<li>零式（高難度8人）：練習パーティで何度も死ぬのが近道。週制限あり</li>
+<li>絶：零式を数層クリアしてから。固定パーティ前提</li>
+</ol>
+<p>ここまで来たら、2キャラ目（Tomatopii Yankee）を作る意味が出てくる：別ワールド、別の見た目でストーリー再走など。</p>
+<h2>並行してやること（片手間でOK）</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>いつから</th>
+<th>何をするか</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>リテイナー</td>
+<td>今すぐ</td>
+<td>Alpha-Zulu を戦闘で雇い「探索」を1日1回。採集クラスを触ったら Charlie・Foxtrot を追加</td>
+</tr>
+<tr>
+<td>FC</td>
+<td>今すぐ</td>
+<td>ダンジョンはFCメンバーと。進行度を伝えてネタバレ防止。FCバフを確認</td>
+</tr>
+<tr>
+<td>グランドカンパニー</td>
+<td>Lv20〜</td>
+<td>軍票が溜まったら昇進試験。装備を納品してベンチャースクリップに交換</td>
+</tr>
+<tr>
+<td>採集（園芸・採掘）</td>
+<td>Lv50以降</td>
+<td>リテイナーを育てる条件なので、どこかでLv10〜20まで触る</td>
+</tr>
+<tr>
+<td>クラフター</td>
+<td>興味が出たら</td>
+<td>全部やると重い。1つ選んで調理か錬金から</td>
+</tr>
+<tr>
+<td>風脈</td>
+<td>各拡張到着時</td>
+<td>エリア到着ごとに回収。後回しにすると面倒</td>
+</tr>
+<tr>
+<td>青魔道士</td>
+<td>Lv50以降・暇なとき</td>
+<td>完全に別枠のお遊びジョブ。ルーレットには入れない</td>
+</tr>
+</tbody>
+</table>
+<h2>全ジョブカンストの進め方</h2>
+<p>戦闘ジョブは21個（リミテッドの青魔を除く）。1つずつ順番に、ルーレットの経験値で上げるのが結局いちばん速い。メインより先に手を出さない。</p>
+<p><strong>順番の考え方</strong></p>
+<ol>
+<li>メインヒーラー（白魔 or 学者）をシナリオと一緒にカンスト</li>
+<li>2つ目のヒーラー → ヒーラー枠でルーレットを回し続けられる</li>
+<li>タンク1つ → マッチングが早く、ヒーラー視点の理解が深まる</li>
+<li>残りのヒーラー・タンク</li>
+<li>DPS（マッチングが遅いので最後。待ち時間に別のことをする）</li>
+</ol>
+<p><strong>経験値源（効率順）</strong></p>
+<ul>
+<li>デイリールーレット（レベリング・初心者・アライアンス・メインクエ）：1日1回ずつ</li>
+<li>休息ボーナス：宿屋でログアウト</li>
+<li>FCの経験値バフ、食事（経験値+3%）</li>
+<li>アーマリーボーナス：自分の最高レベルより低いジョブは経験値が増える。カンストが増えるほど残りが速くなる</li>
+<li>装備はカンスト済みジョブのおさがり＋トークン装備で足りる</li>
+</ul>
+<p><strong>目安</strong>：1日ルーレット1周なら、1ジョブあたり1〜2週間。全ジョブで半年〜1年くらいの長期目標。</p>
+<h2>実績コンプ（長期）</h2>
+<p>現行で取れるものを全部。終了済みイベント・旧PvP・レガシー実績は対象外。実績はキャラ単位なので Tomatopii Zulu 1体に集中する。</p>
+<p><strong>今から積み上げるもの（回数系）</strong></p>
+<table>
+<thead>
+<tr>
+<th>系統</th>
+<th>今やること</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FATE</td>
+<td>見かけたら参加。漆黒以降はバイカラージェムとシェアードFATEランク3も</td>
+</tr>
+<tr>
+<td>ダンジョン・討滅戦</td>
+<td>ルーレットで自然に完了回数が貯まる</td>
+</tr>
+<tr>
+<td>蛮族・友好部族</td>
+<td>Lv41から1部族ずつ友好度MAXへ</td>
+</tr>
+<tr>
+<td>PvP</td>
+<td>Lv30からフロントラインルーレットを日課に</td>
+</tr>
+<tr>
+<td>ギャザクラ</td>
+<td>採集職をLv20から始め、最終的に全クラスカンスト</td>
+</tr>
+<tr>
+<td>釣り</td>
+<td>魚図鑑が最大の壁。漁師を触り始めたら図鑑を意識</td>
+</tr>
+<tr>
+<td>トリプルトライアド</td>
+<td>NPCに会ったら1回対戦してカード入手</td>
+</tr>
+<tr>
+<td>探検手帳</td>
+<td>エリア到着時に条件が合えば達成</td>
+</tr>
+</tbody>
+</table>
+<p><strong>捨てない・売らないもの</strong></p>
+<p>カード、オーケストリオン譜、ミニオン、マウント入手アイテム、調度品、イベント装備。実績に絡むのでコレクション扱い。</p>
+<p><strong>壁になるもの（後回しでいい）</strong></p>
+<ul>
+<li>釣り・オーシャンフィッシングの図鑑</li>
+<li>零式・絶の攻略実績（固定PTが実質必要）</li>
+<li>クリスタルコンフリクトのランク実績</li>
+<li>採集・製作の数万回系</li>
+</ul>
+<p>順番は「ストーリー完走 → 全ジョブカンスト → 実績」。実績リスト（キャラクター→アチーブメント）を一度全部眺めて、何があるか把握しておく。</p><footer>2026-10-12 書き出し</footer></main></body></html>

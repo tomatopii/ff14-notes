@@ -1,0 +1,408 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FF14 マクロ集</title><style>
+:root{--bg:#fbfaf7;--fg:#222;--muted:#666;--line:#ddd;--accent:#8a5a2b;--code:#f1efe9}
+@media (prefers-color-scheme:dark){:root{--bg:#1b1b1d;--fg:#e8e6e1;--muted:#9a9a9a;--line:#3a3a3d;--accent:#d9a86c;--code:#2a2a2e}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Meiryo","Noto Sans JP",system-ui,sans-serif;line-height:1.75;font-size:16px}
+main{max-width:860px;margin:0 auto;padding:32px 16px 64px}
+nav.top{font-size:14px;color:var(--muted);margin-bottom:8px}
+nav.top a{color:var(--accent);text-decoration:none}
+h1{font-size:1.8em;border-bottom:2px solid var(--accent);padding-bottom:6px;margin-top:0}
+h2{font-size:1.35em;margin-top:2em;border-left:5px solid var(--accent);padding-left:10px}
+h3{font-size:1.1em;margin-top:1.5em}
+a{color:var(--accent)}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14.5px;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:6px 10px;vertical-align:top;text-align:left}
+th{background:var(--code)}
+code{background:var(--code);padding:1px 5px;border-radius:4px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+pre{background:var(--code);padding:12px 14px;border-radius:8px;overflow-x:auto;border:1px solid var(--line)}
+pre code{background:none;padding:0}
+ul,ol{padding-left:1.5em}
+li{margin:3px 0}
+input[type=checkbox]{margin-right:6px;transform:scale(1.15)}
+footer{margin-top:48px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:12px}
+</style></head><body><main><nav class="top"><a href="00_index.html">FF14 ドキュメント索引</a> · <a href="01_naming.html">Tomatopii 命名リスト</a> · <a href="02_macros.html">FF14 マクロ集</a> · <a href="03_roadmap.html">FF14 ロードマップ</a> · <a href="04_events.html">FF14 開催中イベントまとめ（2026年10月）</a> · <a href="05_settings.html">FF14 設定・ギアセット・QoLまとめ</a> · <a href="06_irreversible.html">FF14 取り返しのつかない要素</a> · <a href="07_scholar_skills.html">FF14 学者（Scholar）アクション・特性リファレンス（パッチ7.5時点 / 2026年10月調査）</a></nav><h1>FF14 マクロ集</h1>
+<p>Oct 8, 2026 · @tomatopii</p>
+<h2>一覧（16個）</h2>
+<table>
+<thead>
+<tr>
+<th>保存先</th>
+<th>番号</th>
+<th>名前</th>
+<th>置き場所</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>共有</td>
+<td>0</td>
+<td>挨拶：入場</td>
+<td>Ctrl層</td>
+</tr>
+<tr>
+<td>共有</td>
+<td>1</td>
+<td>挨拶：退場</td>
+<td>Ctrl層</td>
+</tr>
+<tr>
+<td>共有</td>
+<td>2</td>
+<td>挨拶：謝罪</td>
+<td>Ctrl層</td>
+</tr>
+<tr>
+<td>共有</td>
+<td>3</td>
+<td>挨拶：お礼</td>
+<td>Ctrl層</td>
+</tr>
+<tr>
+<td>共有</td>
+<td>10</td>
+<td>切替：学者</td>
+<td>Ctrl層</td>
+</tr>
+<tr>
+<td>共有</td>
+<td>11</td>
+<td>切替：モンク</td>
+<td>Ctrl層</td>
+</tr>
+<tr>
+<td>個別</td>
+<td>0</td>
+<td>学者：蘇生</td>
+<td>Alt層</td>
+</tr>
+<tr>
+<td>個別</td>
+<td>1</td>
+<td>学者：エスナ</td>
+<td>Alt層</td>
+</tr>
+<tr>
+<td>個別</td>
+<td>2</td>
+<td>学者：鼓舞</td>
+<td>Alt層</td>
+</tr>
+<tr>
+<td>個別</td>
+<td>3</td>
+<td>学者：生命活性</td>
+<td>Alt層</td>
+</tr>
+<tr>
+<td>個別</td>
+<td>4</td>
+<td>学者：フィジク</td>
+<td>Alt層</td>
+</tr>
+<tr>
+<td>個別</td>
+<td>5</td>
+<td>学者：入場</td>
+<td>Ctrl層</td>
+</tr>
+<tr>
+<td>個別</td>
+<td>6</td>
+<td>学者：陣</td>
+<td>層1の9</td>
+</tr>
+<tr>
+<td>個別</td>
+<td>50</td>
+<td>PvP：鼓舞</td>
+<td>PvPバー 8</td>
+</tr>
+<tr>
+<td>個別</td>
+<td>51</td>
+<td>PvP：展開</td>
+<td>PvPバー 3</td>
+</tr>
+<tr>
+<td>個別</td>
+<td>52</td>
+<td>PvP：ヒール</td>
+<td>PvPバー 11（FL/RWのみ）</td>
+</tr>
+</tbody>
+</table>
+<p>マウントルーレット・テレポ・デジョン・LB・スプリント・ポーションはマクロにせず直接ドラッグ。</p>
+<h2>共有</h2>
+<p><strong>0　挨拶：入場</strong></p>
+<pre><code>/macrolock
+/macroicon &quot;手を振る&quot; emote
+/macroerror off
+/party よろしくお願いします！
+/alliance よろしくお願いします！
+/wave motion
+</code></pre>
+<p><strong>1　挨拶：退場</strong></p>
+<pre><code>/macrolock
+/macroicon &quot;お辞儀する&quot; emote
+/macroerror off
+/party ありがとうございました！お疲れ様でした！
+/alliance ありがとうございました！
+/bow motion
+</code></pre>
+<p><strong>2　挨拶：謝罪</strong></p>
+<pre><code>/macrolock
+/macroicon &quot;ひざまずく&quot; emote
+/macroerror off
+/party すみません、失礼しました。
+/bow motion
+</code></pre>
+<p><strong>3　挨拶：お礼</strong></p>
+<pre><code>/macrolock
+/macroicon &quot;拍手する&quot; emote
+/macroerror off
+/party ありがとうございます！
+/clap motion
+</code></pre>
+<p><strong>10　切替：学者</strong></p>
+<pre><code>/macroicon 2 gearset
+/macroerror off
+/gearset change &quot;学者&quot;
+/hudlayout 2
+</code></pre>
+<p><strong>11　切替：モンク</strong></p>
+<pre><code>/macroicon 1 gearset
+/macroerror off
+/gearset change &quot;モンク&quot;
+/hudlayout 1
+</code></pre>
+<h2>個別（学者）</h2>
+<p><strong>0　学者：蘇生</strong></p>
+<pre><code>/macrolock
+/macroicon リザレク
+/macroerror off
+/action 迅速魔 &lt;wait.1&gt;
+/action リザレク &lt;mo&gt;
+/action リザレク &lt;t&gt;
+/party リザレク → &lt;t&gt;
+</code></pre>
+<p><strong>1　学者：エスナ</strong></p>
+<pre><code>/macroicon エスナ
+/macroerror off
+/action エスナ &lt;mo&gt;
+/action エスナ &lt;t&gt;
+</code></pre>
+<p><strong>2　学者：鼓舞</strong></p>
+<pre><code>/macroicon 鼓舞激励の策
+/macroerror off
+/action 鼓舞激励の策 &lt;mo&gt;
+/action 鼓舞激励の策 &lt;t&gt;
+/action 鼓舞激励の策 &lt;2&gt;
+</code></pre>
+<p><code>&lt;2&gt;</code> はパーティリスト2番目（タンクを上に並べておく）。</p>
+<p><strong>3　学者：生命活性</strong></p>
+<pre><code>/macroicon 生命活性法
+/macroerror off
+/action 生命活性法 &lt;mo&gt;
+/action 生命活性法 &lt;t&gt;
+</code></pre>
+<p><strong>4　学者：フィジク</strong></p>
+<pre><code>/macroicon フィジク
+/macroerror off
+/action フィジク &lt;mo&gt;
+/action フィジク &lt;t&gt;
+</code></pre>
+<p><strong>5　学者：入場</strong></p>
+<pre><code>/macrolock
+/macroicon サモン・エオス
+/macroerror off
+/action サモン・エオス
+/party よろしくお願いします！
+/alliance よろしくお願いします！
+/wave motion
+</code></pre>
+<p><strong>6　学者：陣</strong>（マウス位置に即設置）</p>
+<pre><code>/macroicon 野戦治療の陣
+/macroerror off
+/action 野戦治療の陣 gtoff
+/action 野戦治療の陣 &lt;me&gt;
+</code></pre>
+<p><code>gtoff</code> は地面指定カーソルを出さず、マウスカーソルの位置にその場で設置（<code>&lt; &gt;</code> は付けない）。2行目はカーソルが届かない位置のときの保険で、自分の足元に置く。キャラクターコンフィグ → 操作設定 → ターゲット → グラウンドターゲット設定の「GTアクションの有効範囲内のみ操作可能にする」をオンにすると、カーソルが範囲外でも届く端に寄せて置いてくれる。</p>
+<h2>個別（学者 PvP）</h2>
+<p>PvP 専用アクションは <code>/action</code> ではなく <code>/pvpaction</code>、アイコンは <code>pvpaction</code> 型。PvP ホットバーは PvE と別セットなので、マクロをそちらに置く。</p>
+<p><strong>50　PvP：鼓舞</strong></p>
+<pre><code>/macroicon 鼓舞激励の策 pvpaction
+/macroerror off
+/pvpaction 鼓舞激励の策 &lt;mo&gt;
+/pvpaction 鼓舞激励の策 &lt;t&gt;
+</code></pre>
+<p><strong>51　PvP：展開</strong></p>
+<pre><code>/macroicon 展開戦術 pvpaction
+/macroerror off
+/pvpaction 展開戦術 &lt;mo&gt;
+/pvpaction 展開戦術 &lt;t&gt;
+</code></pre>
+<p><strong>52　PvP：ヒール</strong>（ロールアクション。フロントライン・ライバルウィングズで「ヒール」を選んだときだけ）</p>
+<pre><code>/macroicon ヒール pvpaction
+/macroerror off
+/pvpaction ヒール &lt;mo&gt;
+/pvpaction ヒール &lt;t&gt;
+</code></pre>
+<p>快気・疾風怒濤・セラフィズムは自分対象、蚠毒法・楹炎法・連環計は敵対象なのでマクロ不要。</p>
+<h2>テンプレ（スキル名を入れ替えるだけ）</h2>
+<p><strong>敵へのアクション</strong>…マクロ不要。アクションをそのまま置く（ターゲットに飛ぶ。マクロにすると先行入力が死ぬ）</p>
+<p><strong>自分へのアクション</strong>…マクロ不要。そのまま置く</p>
+<p><strong>味方単体へのアクション</strong>（マウスオーバー→ターゲット→タンク）</p>
+<pre><code>/macroicon スキル名
+/macroerror off
+/action スキル名 &lt;mo&gt;
+/action スキル名 &lt;t&gt;
+/action スキル名 &lt;2&gt;
+</code></pre>
+<p>最後の <code>&lt;2&gt;</code> は「誰も指していないならパーティリスト2番目」。タンクに飛ばしたいスキル（鼓舞・深謀・エーテルパクト）にだけ付ける。回復・エスナ・救出は外す。</p>
+<p><strong>蘇生</strong>（迅速魔つき）</p>
+<pre><code>/macrolock
+/macroicon リザレク
+/macroerror off
+/action 迅速魔 &lt;wait.1&gt;
+/action リザレク &lt;mo&gt;
+/action リザレク &lt;t&gt;
+/party リザレク → &lt;t&gt;
+</code></pre>
+<p><strong>パーティ番号指定</strong>（N は 1〜8。<code>&lt;1&gt;</code> は自分）</p>
+<pre><code>/macroicon スキル名
+/action スキル名 &lt;N&gt;
+</code></pre>
+<p>当てはめるスキル（味方単体を対象にするものだけ）：フィジク・エスナ・リザレク・鼓舞激励の策・生命活性法・救出(48)・展開戦術(56)・深謀遠慮の策(62)・エーテルパクト(70)・生命回生法(86)</p>
+<h2>書き方</h2>
+<ul>
+<li>15行、1行180文字。上から順に実行、失敗した行は飛ばす（<code>&lt;mo&gt;</code>→<code>&lt;t&gt;</code> の二段構えはこれを利用）</li>
+<li>マクロは先行入力が効かない。連打するGCDはマクロにしない</li>
+<li>挨拶は通常の文字でOK（貼り付けそのまま動く）。海外の人と組むなら、マクロ編集画面で文言を消して <strong>Tab</strong> → 定型文辞書（自動翻訳）から選ぶ。<code>{ }</code> を文字で貼っても翻訳されない</li>
+<li><code>/micon 2 gearset</code> の数字はギアセット一覧の並び順</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>コマンド（省略形）</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/action</code>（<code>/ac</code>）</td>
+<td>アクション実行</td>
+</tr>
+<tr>
+<td><code>/pvpaction</code>（<code>/pvpac</code>）</td>
+<td>PvPアクション実行（PvPエリア専用）</td>
+</tr>
+<tr>
+<td><code>/macroicon</code>（<code>/micon</code>）</td>
+<td>アイコン</td>
+</tr>
+<tr>
+<td><code>/macrolock</code>（<code>/mlock</code>）</td>
+<td>実行中、他のマクロを割り込ませない</td>
+</tr>
+<tr>
+<td><code>/macroerror off</code>（<code>/merror</code>）</td>
+<td>失敗行のエラーを非表示（マクロ終了で自動復帰）</td>
+</tr>
+<tr>
+<td><code>/party</code>（<code>/p</code>）<code>/alliance</code>（<code>/a</code>）</td>
+<td>パーティ／アライアンスチャット</td>
+</tr>
+<tr>
+<td><code>/エモート motion</code></td>
+<td>動作だけ。ログに定型セリフを出さない</td>
+</tr>
+<tr>
+<td><code>&lt;wait.n&gt;</code></td>
+<td>n秒待つ（整数、最大60）</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>/macroicon "名前" 種類</code></strong></p>
+<table>
+<thead>
+<tr>
+<th>種類</th>
+<th>対象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>（省略）</td>
+<td>アクション</td>
+</tr>
+<tr>
+<td>general</td>
+<td>汎用アクション（テレポ・LB・マウントルーレット）</td>
+</tr>
+<tr>
+<td>emote</td>
+<td>エモート。エモートリストの表示名（手を振る・お辞儀する・ひざまずく）</td>
+</tr>
+<tr>
+<td>item</td>
+<td>アイテム（所持数表示）</td>
+</tr>
+<tr>
+<td>mount / minion</td>
+<td>マウント／ミニオン</td>
+</tr>
+<tr>
+<td>gearset</td>
+<td>ギアセット番号</td>
+</tr>
+<tr>
+<td>classjob</td>
+<td>ジョブ名</td>
+</tr>
+<tr>
+<td>pet / buddy</td>
+<td>妖精／バディのアクション</td>
+</tr>
+<tr>
+<td>marking / waymark</td>
+<td>マーキング／フィールドマーカー</td>
+</tr>
+</tbody>
+</table>
+<p>アイコンが「M」のまま：名前の完全一致・種類・<code>" "</code> の3つを確認。</p>
+<p><strong>ターゲット指定子</strong></p>
+<table>
+<thead>
+<tr>
+<th>指定子</th>
+<th>対象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;t&gt;</code></td>
+<td>ターゲット</td>
+</tr>
+<tr>
+<td><code>&lt;mo&gt;</code></td>
+<td>マウスオーバー（パーティリスト上）</td>
+</tr>
+<tr>
+<td><code>&lt;me&gt;</code></td>
+<td>自分</td>
+</tr>
+<tr>
+<td><code>&lt;tt&gt;</code></td>
+<td>ターゲットのターゲット</td>
+</tr>
+<tr>
+<td><code>&lt;1&gt;</code>〜<code>&lt;8&gt;</code></td>
+<td>パーティリストの番号</td>
+</tr>
+<tr>
+<td><code>&lt;f&gt;</code></td>
+<td>フォーカスターゲット</td>
+</tr>
+</tbody>
+</table>
+<p>出典：<a href="https://jp.finalfantasyxiv.com/lodestone/playguide/db/text_command/e6e219e1adc/">/macroicon</a>、<a href="https://jp.finalfantasyxiv.com/lodestone/playguide/db/text_command/?category2=7">マクロ専用コマンド</a>、<a href="https://jp.finalfantasyxiv.com/lodestone/playguide/db/text_command/?category2=9">エモートコマンド</a></p><footer>2026-10-12 書き出し</footer></main></body></html>

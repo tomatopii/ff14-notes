@@ -1,0 +1,427 @@
+<title>学者ホットバー</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Cinzel:wght@600&display=swap">
+<style>
+/* layout: left palette of slot-style tiles, right 4 hotbar layers each 4col×3row in mouse order; dark-first like the game UI */
+:root{
+  --bg:#15171c; --panel:#1e2128; --panel2:#262a33; --line:#3a3f4b; --fg:#e8e6df; --muted:#9a9faa;
+  --accent:#d9b35c; --accent2:#5fa8d3; --warn:#e07b67; --slot:#0f1114; --slotline:#4a5060;
+  --c-heal:#3fbf7f; --c-atk:#e0533f; --c-buff:#4a9be0; --c-debuff:#b26ee0;
+  --font:"Noto Sans JP",system-ui,sans-serif; --display:"Cinzel","Noto Sans JP",serif;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+  --bg:#f3f1ea; --panel:#ffffff; --panel2:#ebe8df; --line:#d3cfc2; --fg:#23252b; --muted:#6a6e78;
+  --accent:#9a7420; --accent2:#2b74a3; --warn:#b84f3c; --slot:#e6e2d6; --slotline:#b9b4a4; color-scheme:light}}
+:root[data-theme="light"]{
+  --bg:#f3f1ea; --panel:#ffffff; --panel2:#ebe8df; --line:#d3cfc2; --fg:#23252b; --muted:#6a6e78;
+  --accent:#9a7420; --accent2:#2b74a3; --warn:#b84f3c; --slot:#e6e2d6; --slotline:#b9b4a4; color-scheme:light}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:14px;line-height:1.5}
+.wrap{max-width:1320px;margin:0 auto;padding-block:16px 48px;padding-inline:16px}
+header{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 20px;margin-bottom:12px}
+h1{font-family:var(--display);font-size:22px;margin:0;letter-spacing:.04em;color:var(--accent)}
+header p{margin:0;color:var(--muted);font-size:13px}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin-bottom:8px}
+.toolbar label{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
+.toolbar input[type=range]{width:140px;accent-color:var(--accent)}
+.toolbar output{font-variant-numeric:tabular-nums;color:var(--fg);min-width:3ch;display:inline-block}
+select{font:inherit;font-size:13px;color:var(--fg);background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:4px 6px}
+button{font:inherit;font-size:13px;color:var(--fg);background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:5px 10px;cursor:pointer}
+button:hover{border-color:var(--accent)}
+button:focus-visible,.tile:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+.tabs{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.tabs button{border:0;border-radius:0;background:transparent}
+.tabs button[aria-selected=true]{background:var(--accent);color:#1a1507}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--muted);margin:0 0 12px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:4px;border:2px solid}
+.legend .mk{position:static;display:inline-block;margin-right:4px}
+.main{display:grid;grid-template-columns:340px minmax(0,1fr);gap:16px}
+@media (max-width:860px){.main{grid-template-columns:1fr}}
+.palette{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px;align-self:start;position:sticky;top:env(safe-area-inset-top,0px);max-height:calc(100vh - 24px);overflow:auto}
+@media (max-width:860px){.palette{position:static;max-height:300px}}
+.palette h2{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:10px 0 6px}
+.palette h2:first-child{margin-top:0}
+.pal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.layers{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px}
+.layer{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 12px 12px}
+.layer h3{margin:0 0 8px;font-size:14px;display:flex;align-items:baseline;gap:8px}
+.layer h3 .key{font-family:var(--display);color:var(--accent);letter-spacing:.05em}
+.layer h3 small{color:var(--muted);font-weight:400}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+/* tile = one icon, used both in palette and slots */
+.tile{position:relative;aspect-ratio:1;border-radius:8px;border:1px solid var(--slotline);background:var(--slot);padding:0;overflow:hidden;min-width:0;cursor:grab;user-select:none;-webkit-user-select:none;touch-action:none;outline:none}
+.tile.empty{cursor:pointer}
+.tile img{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+.tile.used{opacity:.4}
+.tile.locked img{filter:grayscale(1) brightness(.55)}
+.tile.selected{box-shadow:0 0 0 3px var(--accent2)!important}
+.tile.over{box-shadow:0 0 0 3px var(--accent)!important}
+.tile.dragging{opacity:.25}
+.k-heal{box-shadow:inset 0 0 0 2px var(--c-heal)}
+.k-atk{box-shadow:inset 0 0 0 2px var(--c-atk)}
+.k-buff{box-shadow:inset 0 0 0 2px var(--c-buff)}
+.k-debuff{box-shadow:inset 0 0 0 2px var(--c-debuff)}
+.mk{position:absolute;font-size:9px;line-height:1;padding:2px 3px;border-radius:3px;background:rgba(0,0,0,.65);color:#fff;z-index:2;font-variant-numeric:tabular-nums;font-weight:700;pointer-events:none}
+.mk-c{right:3px;top:3px;background:#b23b2e}
+.mk-c.inst{background:rgba(0,0,0,.65)}
+.mk-a{left:3px;bottom:28px}
+.a-範{background:#2b74a3}.a-自{background:#6a6e78}.a-単{background:rgba(0,0,0,.65)}
+.mk-r{right:3px;bottom:28px;background:#8a5fcf}
+.mk-r.gcd{background:rgba(0,0,0,.55);font-weight:500}
+.mk-res{left:50%;top:3px;transform:translateX(-50%);white-space:nowrap}
+.mk-res .fl{color:#ffcf5a}.mk-res .fy{color:#7fe3ff}
+.tile .num{position:absolute;left:4px;top:3px;font-size:11px;font-weight:700;color:var(--accent);text-shadow:0 1px 2px #000,0 0 3px #000;font-variant-numeric:tabular-nums;z-index:2;pointer-events:none}
+.tile.empty .num{color:var(--muted);text-shadow:none}
+.tile .name{position:absolute;left:0;right:0;bottom:0;font-size:10px;line-height:1.15;padding:2px 3px;background:rgba(0,0,0,.66);color:#fff;text-align:center;z-index:2;display:flex;flex-direction:column;pointer-events:none}
+.tile .name span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tile .eff{font-size:9px;color:#ffd98a}
+.tile .x{position:absolute;right:3px;top:18px;z-index:3;width:18px;height:18px;border-radius:50%;background:var(--warn);color:#fff;border:0;font-size:12px;line-height:18px;padding:0;display:none;cursor:pointer}
+.tile.filled:hover .x{display:block}
+.rest{position:absolute;inset:0;border:1px dashed var(--accent);border-radius:8px;opacity:.35;pointer-events:none}
+.ghost{position:fixed;width:64px;height:64px;pointer-events:none;z-index:99;opacity:.9;border-radius:8px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.5)}
+.ghost img{width:100%;height:100%;display:block}
+.info{margin-top:14px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:13px;min-height:44px}
+.info b{color:var(--accent)}
+.info .muted{color:var(--muted)}
+.export{margin-top:14px}
+.export textarea{width:100%;min-height:150px;font:12px/1.5 ui-monospace,Menlo,Consolas,monospace;background:var(--slot);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:8px}
+.hint{font-size:12px;color:var(--muted);margin:6px 0 0}
+.toast{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--accent);color:#1a1507;padding:6px 14px;border-radius:999px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.show{opacity:1}
+@media (prefers-reduced-motion:reduce){.toast{transition:none}}
+</style>
+
+<div class="wrap">
+<header>
+  <h1>学者ホットバー</h1>
+  <p>Razer Naga 12ボタン＝F1〜F12。マウスのボタン配置そのまま（上段 3·6·9·12 / 中段 2·5·8·11 / 下段 1·4·7·10）。左から枠へドラッグ。枠同士もドラッグで入れ替え。クリックで選んで→枠クリックでも置ける。</p>
+</header>
+
+<div class="toolbar">
+  <div class="tabs" role="tablist">
+    <button role="tab" id="tab-pve" aria-selected="true" data-mode="pve">PvE</button>
+    <button role="tab" id="tab-pvp" aria-selected="false" data-mode="pvp">PvP</button>
+  </div>
+  <label>現在Lv <input type="range" id="lv" min="1" max="100" value="55"><output id="lvout">55</output></label>
+  <label><input type="checkbox" id="showlv" checked> 未習得を暗くする</label>
+  <label>並び順 <select id="sort">
+    <option value="lv">習得Lv順</option>
+    <option value="cd">リキャスト順</option>
+    <option value="kind">種類順（回復→攻撃→バフ→デバフ）</option>
+    <option value="cast">キャスト順（即時→詠唱）</option>
+    <option value="area">対象順（単体→範囲→自分）</option>
+  </select></label>
+  <label><input type="checkbox" id="palgroup" checked> グループ分け</label>
+  <button id="reset" type="button">初期配置に戻す</button>
+  <button id="clear" type="button">全部空にする</button>
+</div>
+<div class="legend">
+  <span><i style="border-color:var(--c-heal)"></i>回復</span><span><i style="border-color:var(--c-atk)"></i>攻撃</span><span><i style="border-color:var(--c-buff)"></i>バフ</span><span><i style="border-color:var(--c-debuff)"></i>デバフ</span>
+  <span><span class="mk mk-c inst">即</span>即時</span><span><span class="mk mk-c">2s</span>詠唱あり（秒）</span>
+  <span><span class="mk mk-a a-単">単</span>単体</span><span><span class="mk mk-a a-範">範</span>範囲</span><span><span class="mk mk-a a-自">自</span>自分</span>
+  <span><span class="mk mk-res"><b class="fl">◆</b></span>エーテルフロー消費</span><span><span class="mk mk-res"><b class="fl">◆+</b></span>フロー獲得</span><span><span class="mk mk-res"><b class="fy">妖</b></span>妖精が関わる</span>
+  <span><span class="mk mk-r">60s</span>リキャスト</span><span><span class="mk mk-r gcd">GCD</span>GCD（2.5秒共通）</span>
+</div>
+
+<div class="main">
+  <aside class="palette" id="palette" aria-label="アクション一覧"></aside>
+  <section>
+    <div class="layers" id="layers"></div>
+    <div class="info" id="info"><span class="muted">アイコンに乗せると説明が出ます。枠の × かダブルクリックで空に。一覧へドラッグして戻すこともできます。</span></div>
+    <div class="export">
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <button id="copy" type="button">配置をテキストでコピー</button>
+        <span class="hint">保存はこのブラウザに自動で残ります</span>
+      </div>
+      <textarea id="out" readonly aria-label="配置テキスト"></textarea>
+    </div>
+  </section>
+</div>
+</div>
+<div class="toast" id="toast">コピーしました</div>
+
+<script>
+const ICONS = __ICONS__;
+const GEN_ICONS = __GEN__;
+const ico = n => (ICONS.find(i => i.name === n && i.id.startsWith('pve')) || ICONS.find(i=>i.name===n) || {}).b64 || '';
+const icoPvp = n => (ICONS.find(i => i.name === n && i.id.startsWith('pvp')) || {}).b64 || '';
+
+const PVE = [
+ {id:'ruin',   name:'ルイン', lv:1, t:'敵', g:'GCD 詠唱', chain:[['気炎法',54],['魔炎法',64],['死炎法',72],['極炎法',82]], note:'主力攻撃。Lv54/64/72/82で自動強化'},
+ {id:'bio',    name:'バイオ', lv:2, t:'敵', g:'GCD 即時', chain:[['バイオラ',26],['蠱毒法',72]], note:'DoT30秒。切らさない'},
+ {id:'aow',    name:'破陣法', lv:46, t:'自分周囲', g:'GCD 即時', chain:[['裂陣法',82]], note:'3体以上で'},
+ {id:'ruin2',  name:'ルインラ', lv:38, t:'敵', g:'GCD 即時', note:'移動中用'},
+ {id:'adlo',   name:'鼓舞激励の策', lv:30, t:'単', g:'GCD 詠唱', note:'回復＋バリア。クリで激励'},
+ {id:'succor', name:'士気高揚の策', lv:35, t:'PT', g:'GCD 詠唱', chain:[['意気軒昂の策',96]], note:'範囲回復＋バリア'},
+ {id:'physick',name:'フィジク', lv:4, t:'単', g:'GCD 詠唱', note:'純回復。ほぼ使わない'},
+ {id:'eos',    name:'サモン・エオス', lv:4, t:'自', g:'GCD', note:'妖精召喚'},
+ {id:'raise',  name:'リザレク', lv:12, t:'単', g:'GCD 8秒詠唱', note:'迅速魔とセット'},
+ {id:'whisper',name:'光の囁き', lv:20, t:'PT', g:'oGCD 60秒', note:'妖精HoT 21秒'},
+ {id:'feyill', name:'フェイイルミネーション', lv:40, t:'PT', g:'oGCD 120秒', note:'回復+10%・魔法被ダメ-5%'},
+ {id:'flow',   name:'エーテルフロー', lv:45, t:'自', g:'oGCD 60秒', note:'スタック3＋MP20%'},
+ {id:'drain',  name:'エナジードレイン', lv:45, t:'敵', g:'oGCD 1秒', note:'◆フロー消費。余り処理'},
+ {id:'lustrate',name:'生命活性法', lv:45, t:'単', g:'oGCD 1秒', note:'◆フロー消費。即時600'},
+ {id:'soil',   name:'野戦治療の陣', lv:50, t:'地面', g:'oGCD 30秒', note:'◆フロー消費。被ダメ-10%'},
+ {id:'indom',  name:'不撓不屈の策', lv:52, t:'PT', g:'oGCD 30秒', note:'◆フロー消費。即時範囲400'},
+ {id:'deploy', name:'展開戦術', lv:56, t:'単', g:'oGCD 90秒', note:'鼓舞を全体に拡散'},
+ {id:'emerg',  name:'応急戦術', lv:58, t:'自', g:'oGCD 15秒', note:'次のバリアを純回復に'},
+ {id:'dissip', name:'転化', lv:60, t:'自', g:'oGCD 180秒', note:'妖精帰還→フロー3＋回復+20%'},
+ {id:'excog',  name:'深謀遠慮の策', lv:62, t:'単', g:'oGCD 45秒', note:'◆フロー消費。HP50%で発動'},
+ {id:'chain',  name:'連環計', lv:66, t:'敵', g:'oGCD 120秒', note:'被クリ+10%。92〜埋伏の毒（アクション変化設定）'},
+ {id:'pact',   name:'エーテルパクト', lv:70, t:'単', g:'oGCD 3秒', note:'妖精HoT。再押しで解除'},
+ {id:'recit',  name:'秘策', lv:74, t:'自', g:'oGCD 60秒', note:'次の鼓舞/意気軒昂/不撓/深謀を無料確定クリ'},
+ {id:'bless',  name:'フェイブレッシング', lv:76, t:'PT', g:'oGCD 60秒', note:'妖精の即時範囲320'},
+ {id:'seraph', name:'サモン・セラフィム', lv:80, t:'自', g:'oGCD 120秒', note:'22秒。召喚中はコンソレイション×2'},
+ {id:'protr',  name:'生命回生法', lv:86, t:'単', g:'oGCD 60秒', note:'最大HP+10%・被回復+10%'},
+ {id:'exped',  name:'疾風怒濤の計', lv:90, t:'PT', g:'oGCD 120秒', note:'移動速度↑＋被ダメ-10%'},
+ {id:'seraphism',name:'セラフィズム', lv:100, t:'PT', g:'oGCD 180秒', note:'20秒HoT。鼓舞・意気軒昂が無詠唱に'},
+ // role
+ {id:'repose', name:'リポーズ', lv:8, t:'敵', g:'GCD 詠唱', role:1, note:'睡眠'},
+ {id:'esuna',  name:'エスナ', lv:10, t:'単', g:'GCD 即時', role:1, note:'状態異常解除'},
+ {id:'lucid',  name:'ルーシッドドリーム', lv:14, t:'自', g:'oGCD 60秒', role:1, note:'MP回復'},
+ {id:'swift',  name:'迅速魔', lv:18, t:'自', g:'oGCD 40秒', role:1, note:'次の魔法を無詠唱'},
+ {id:'sure',   name:'堅実魔', lv:44, t:'自', g:'oGCD 120秒', role:1, note:'ノックバック無効'},
+ {id:'rescue', name:'救出', lv:48, t:'単', g:'oGCD 120秒', role:1, note:'引き寄せ'},
+];
+// macros: base = item whose icon to use
+const GENERAL = [
+ {id:'lb', name:'LB', txt:'LB', note:'ヒーラーLB3＝全員蘇生。高難易度の保険'},
+ {id:'tincture', name:'強化薬', txt:'薬', note:'ジェムドラフト・オブ・マインド。2分バーストに合わせて飲む'},
+ {id:'food', name:'食事', txt:'飯', note:'開始前に食べる。30分、HQで効果大'},
+ {id:'heel', name:'追従', txt:'追従', note:'ペット指示：妖精を自分の所へ戻す'},
+ {id:'pmove', name:'移動', txt:'移動', note:'ペット指示：妖精を指定地点へ（gtoffマクロ可）'},
+];
+// ---- PvP items ----
+const PVP = [
+ {id:'p_broil', name:'極炎法', t:'敵', note:'主力'},
+ {id:'p_adlo',  name:'鼓舞激励の策', t:'単', note:'12秒×2'},
+ {id:'p_bio',   name:'蠱毒法', t:'敵', note:'16秒'},
+ {id:'p_dep',   name:'展開戦術', t:'単', note:'12秒×2'},
+ {id:'p_chain', name:'連環計', t:'敵', note:'20秒'},
+ {id:'p_exped', name:'疾風怒濤の計', t:'PT', note:'30秒。秘策付与'},
+ {id:'p_seraph',name:'サモン・セラフィム', t:'自', note:'60秒'},
+ {id:'p_lb',    name:'セラフィズム', t:'PT', note:'LB'},
+ {id:'p_elix',  name:'軍用エリクサー', t:'自'},
+ {id:'p_recup', name:'快気', t:'自'},
+ {id:'p_purify',name:'浄化', t:'自'},
+ {id:'p_guard', name:'防御', t:'自'},
+ {id:'p_sprint',name:'スプリント', t:'自'},
+ {id:'p_heal',  name:'ヒール', t:'単', note:'ロールアクション（FL/RW）'},
+ {id:'p_stone', name:'ストンラスキン', t:'単', note:'ロールアクション（FL/RW）'},
+ {id:'p_diab',  name:'ディアブロシス', t:'敵', note:'ロールアクション（FL/RW）'},
+];
+
+const META = {"ruin": ["1.5", "攻撃", "単"], "bio": ["即", "攻撃", "単"], "aow": ["即", "攻撃", "範"], "ruin2": ["即", "攻撃", "単"], "adlo": ["2", "回復", "単"], "succor": ["2", "回復", "範"], "physick": ["1.5", "回復", "単"], "eos": ["1.5", "バフ", "自"], "raise": ["8", "回復", "単"], "whisper": ["即", "回復", "範"], "feyill": ["即", "バフ", "範"], "flow": ["即", "バフ", "自"], "drain": ["即", "攻撃", "単"], "lustrate": ["即", "回復", "単"], "soil": ["即", "バフ", "範"], "indom": ["即", "回復", "範"], "deploy": ["即", "バフ", "範"], "emerg": ["即", "バフ", "自"], "dissip": ["即", "バフ", "自"], "excog": ["即", "回復", "単"], "chain": ["即", "デバフ", "単"], "pact": ["即", "回復", "単"], "recit": ["即", "バフ", "自"], "bless": ["即", "回復", "範"], "seraph": ["即", "回復", "範"], "protr": ["即", "バフ", "単"], "exped": ["即", "バフ", "範"], "seraphism": ["即", "回復", "範"], "repose": ["2.5", "デバフ", "単"], "esuna": ["即", "回復", "単"], "lucid": ["即", "バフ", "自"], "swift": ["即", "バフ", "自"], "sure": ["即", "バフ", "自"], "rescue": ["即", "バフ", "単"], "p_broil": ["詠", "攻撃", "単"], "p_adlo": ["即", "回復", "単"], "p_bio": ["即", "攻撃", "単"], "p_dep": ["即", "バフ", "範"], "p_chain": ["即", "デバフ", "単"], "p_exped": ["即", "バフ", "範"], "p_seraph": ["即", "回復", "範"], "p_lb": ["即", "回復", "範"], "p_elix": ["即", "回復", "自"], "p_recup": ["即", "回復", "自"], "p_purify": ["即", "バフ", "自"], "p_guard": ["即", "バフ", "自"], "p_sprint": ["即", "バフ", "自"], "p_heal": ["即", "回復", "単"], "p_stone": ["即", "バフ", "単"], "p_diab": ["即", "デバフ", "単"]};
+const RECAST = {"ruin": "GCD", "bio": "GCD", "aow": "GCD", "ruin2": "GCD", "adlo": "GCD", "succor": "GCD", "physick": "GCD", "eos": "GCD", "raise": "GCD", "repose": "GCD", "esuna": "GCD", "whisper": "60", "feyill": "120", "flow": "60", "drain": "1", "lustrate": "1", "soil": "30", "indom": "30", "deploy": "90", "emerg": "15", "dissip": "180", "excog": "45", "chain": "120", "pact": "3", "recit": "60", "bless": "60", "seraph": "120", "protr": "60", "exped": "120", "seraphism": "180", "lucid": "60", "swift": "40", "sure": "120", "rescue": "120", "p_broil": "GCD", "p_adlo": "12", "p_bio": "16", "p_dep": "12", "p_chain": "20", "p_exped": "30", "p_seraph": "60", "p_lb": "LB"};
+const RES = {"drain": "◆", "lustrate": "◆", "soil": "◆", "indom": "◆", "excog": "◆", "flow": "◆+", "dissip": "◆+妖", "eos": "妖", "whisper": "妖", "feyill": "妖", "bless": "妖", "pact": "妖", "seraph": "妖", "seraphism": "妖", "p_seraph": "妖", "p_lb": "妖"};
+const EFF = {"ruin": "ダメージ", "bio": "毒(DoT)", "aow": "範囲ダメージ", "ruin2": "ダメージ", "adlo": "回復+バリア", "succor": "回復+バリア", "physick": "HP回復", "eos": "妖精召喚", "raise": "蘇生", "whisper": "継続回復", "feyill": "回復量UP", "flow": "フロー3+MP", "drain": "ダメ+HP吸収", "lustrate": "HP回復", "soil": "軽減10%", "indom": "HP回復", "deploy": "バリア拡散", "emerg": "バリア→回復", "dissip": "フロー3+回復UP", "excog": "遅延回復", "chain": "被クリUP", "pact": "継続回復", "recit": "次回確定クリ", "bless": "HP回復", "seraph": "セラフィム召喚", "protr": "最大HPUP", "exped": "軽減+移動速度", "seraphism": "継続回復", "repose": "睡眠", "esuna": "状態異常解除", "lucid": "MP回復", "swift": "無詠唱化", "sure": "ノックバック無効", "rescue": "引き寄せ", "lb": "リミットブレイク", "tincture": "能力UP 30秒", "food": "能力UP 30分", "potion": "HP回復", "return": "帰還", "sprint": "移動速度UP", "heel": "妖精を戻す", "pmove": "妖精を移動", "p_broil": "ダメージ", "p_adlo": "回復+バリア", "p_bio": "毒(DoT)", "p_dep": "バリア拡散", "p_chain": "被ダメUP", "p_exped": "軽減+移動速度", "p_seraph": "召喚+回復", "p_lb": "継続回復", "p_elix": "HP/MP回復", "p_recup": "HP回復", "p_purify": "状態異常解除", "p_guard": "軽減90%", "p_sprint": "移動速度UP", "p_heal": "HP回復", "p_stone": "バリア", "p_diab": "毒(DoT)"};
+const KCOL={'回復':'heal','攻撃':'atk','バフ':'buff','デバフ':'debuff'};
+const DEFAULT = {
+ pve:[
+  {3:'bless',6:'deploy',9:'soil',12:'indom', 2:'aow',5:'ruin',8:'adlo',11:'whisper', 1:'bio',4:'drain',7:'flow',10:'chain'},
+  {3:'excog',6:'lustrate',9:'protr',12:'exped', 2:'succor',5:'seraphism',8:'seraph',11:'pact', 1:'dissip',4:'recit',7:'feyill',10:null},
+  {3:'swift',6:'esuna',9:'rescue',12:'repose', 2:'ruin2',5:'raise',8:'physick',11:null, 1:'lucid',4:'emerg',7:'lb',10:'sure'},
+  {3:null,6:'tincture',9:'pmove',12:null, 2:null,5:'food',8:null,11:null, 1:null,4:null,7:'heel',10:null},
+ ],
+ pvp:[
+  {3:'p_dep',6:'p_chain',9:'p_seraph',12:'p_guard', 2:'p_exped',5:'p_broil',8:'p_adlo',11:'p_heal', 1:'p_bio',4:'p_purify',7:'p_recup',10:'p_elix'},
+  {3:null,6:null,9:null,12:null, 2:null,5:'p_lb',8:null,11:null, 1:null,4:null,7:null,10:null},
+ ]
+};
+
+const ALL = {};
+PVE.forEach(i=>{i.kind='action';i.icon=ico(i.name);[i.c,i.k,i.a]=META[i.id]||['','',''];ALL[i.id]=i});
+GENERAL.forEach(i=>{i.kind='general';i.lv=1;i.t='-';i.icon=GEN_ICONS[i.id]||'';ALL[i.id]=i});
+PVP.forEach(i=>{i.kind='pvp';i.icon=icoPvp(i.name);i.lv=1;[i.c,i.k,i.a]=META[i.id]||['','',''];ALL[i.id]=i});
+
+const LAYERS = {
+  pve:[{key:'なし',mod:''},{key:'Shift',mod:'Shift+'},{key:'Alt',mod:'Alt+'},{key:'Ctrl',mod:'Ctrl+'}],
+  pvp:[{key:'なし',mod:''},{key:'Shift',mod:'Shift+'}],
+};
+const ORDER = [3,6,9,12, 2,5,8,11, 1,4,7,10];
+
+let state, mode='pve', lv=55, selected=null; // selected: {id, from:{layer,slot}|null}
+const KEY='sch-hotbar-v4';
+function load(){ try{const s=JSON.parse(localStorage.getItem(KEY)); if(s&&s.state){state=s.state; lv=s.lv||55; mode=s.mode||'pve'; return}}catch(e){} state=JSON.parse(JSON.stringify(DEFAULT)); }
+function save(){ try{localStorage.setItem(KEY,JSON.stringify({state,lv,mode}))}catch(e){} }
+load();
+
+function displayItem(it){
+  let name=it.name, icon=it.icon;
+  if(it.chain){ for(const [n,l] of it.chain){ if(lv>=l){name=n; icon=ico(n)} } }
+  return {name,icon};
+}
+function usedIds(){ const u=new Set(); state[mode].forEach(L=>Object.values(L).forEach(v=>v&&u.add(v))); return u; }
+
+function marks(it,el){
+  if(it.k){
+    el.classList.add('k-'+KCOL[it.k]);
+    const c=document.createElement('span'); c.className='mk mk-c'+(it.c==='即'?' inst':''); c.textContent=it.c==='即'?'即':(it.c==='詠'?'詠':it.c+'s'); el.appendChild(c);
+    const a=document.createElement('span'); a.className='mk mk-a a-'+it.a; a.textContent=it.a; el.appendChild(a);
+  }
+  const rs=RES[it.id]; if(rs){ const e=document.createElement('span'); e.className='mk mk-res'; e.innerHTML=rs.replace('◆+','<b class="fl">◆+</b>').replace(/◆(?!\+)/,'<b class="fl">◆</b>').replace('妖','<b class="fy">妖</b>'); el.appendChild(e); }
+  const r=RECAST[it.id]; if(r){ const e=document.createElement('span'); e.className='mk mk-r'+(r==='GCD'||r==='LB'?' gcd':''); e.textContent=(r==='GCD'||r==='LB')?r:r+'s'; el.appendChild(e); }
+}
+// build a tile element for item `it` (null = empty slot)
+function tile(it, num){
+  const showlv=document.getElementById('showlv').checked;
+  const el=document.createElement('div'); el.className='tile'+(it?' filled':' empty'); el.tabIndex=0;
+  if(num!=null){ if(num===5||num===8){const r=document.createElement('div'); r.className='rest'; el.appendChild(r);} const n=document.createElement('span'); n.className='num'; n.textContent=num; el.appendChild(n); }
+  if(it){
+    const d=displayItem(it); el.dataset.id=it.id;
+    if(d.icon){ const im=document.createElement('img'); im.src=d.icon; im.alt=d.name; el.appendChild(im); }
+    marks(it,el);
+    if(showlv && it.lv>lv) el.classList.add('locked');
+    const nm=document.createElement('span'); nm.className='name';
+    const n1=document.createElement('span'); n1.textContent=d.name+(showlv&&it.lv>lv?`(Lv${it.lv})`:'');
+    const n2=document.createElement('span'); n2.className='eff'; n2.textContent=EFF[it.id]||'';
+    nm.appendChild(n1); nm.appendChild(n2); el.appendChild(nm);
+    el.title=d.name+(EFF[it.id]?'：'+EFF[it.id]:'');
+  }
+  return el;
+}
+
+function sortItems(items){
+  const m=document.getElementById('sort').value;
+  const cdv=i=>{const r=RECAST[i.id]; if(!r) return 9999; if(r==='GCD') return 2.5; if(r==='LB') return 9998; return +r;};
+  const kv=i=>({'回復':0,'攻撃':1,'バフ':2,'デバフ':3}[i.k]??9);
+  const cv=i=>i.c==='即'?0:i.c==='詠'?1:parseFloat(i.c)||0;
+  const av=i=>({'単':0,'範':1,'自':2}[i.a]??9);
+  const arr=items.slice();
+  if(m==='cd') arr.sort((a,b)=>cdv(a)-cdv(b)||a.lv-b.lv);
+  else if(m==='kind') arr.sort((a,b)=>kv(a)-kv(b)||a.lv-b.lv);
+  else if(m==='cast') arr.sort((a,b)=>cv(a)-cv(b)||a.lv-b.lv);
+  else if(m==='area') arr.sort((a,b)=>av(a)-av(b)||a.lv-b.lv);
+  return arr;
+}
+function renderPalette(){
+  const pal=document.getElementById('palette'); pal.innerHTML='';
+  const groups = mode==='pve' ? [['ジョブアクション',PVE.filter(i=>!i.role)],['ロールアクション',PVE.filter(i=>i.role)],['その他',GENERAL]]
+                               : [['PvPアクション',PVP.filter(i=>!/^p_(heal|stone|diab)$/.test(i.id))],['ロールアクション（FL/RW）',PVP.filter(i=>/^p_(heal|stone|diab)$/.test(i.id))]];
+  const used=usedIds(), palgroup=document.getElementById('palgroup').checked;
+  const groups2 = palgroup ? groups : [['すべて', groups.flatMap(g=>g[1])]];
+  for(const [title,items] of groups2){
+    const h=document.createElement('h2'); h.textContent=title; pal.appendChild(h);
+    const g=document.createElement('div'); g.className='pal-grid';
+    for(const it of sortItems(items)){
+      const el=tile(it,null); el.dataset.src='pal';
+      if(used.has(it.id)) el.classList.add('used');
+      if(selected && selected.id===it.id && !selected.from) el.classList.add('selected');
+      el.addEventListener('mouseenter',()=>showInfo(it));
+      g.appendChild(el);
+    }
+    pal.appendChild(g);
+  }
+}
+function fkey(mod,slot){ return mod+'F'+slot; }
+function renderLayers(){
+  const root=document.getElementById('layers'); root.innerHTML='';
+  LAYERS[mode].forEach((L,li)=>{
+    const sec=document.createElement('div'); sec.className='layer';
+    const h=document.createElement('h3'); h.innerHTML=`<span class="key">${li+1}</span> ${L.key} <small>${L.mod?L.mod+'F1〜F12':'F1〜F12'}</small>`; sec.appendChild(h);
+    const g=document.createElement('div'); g.className='grid';
+    for(const n of ORDER){
+      const id=state[mode][li][n]; const it=id?ALL[id]:null;
+      const s=tile(it,n); s.dataset.src='slot'; s.dataset.layer=li; s.dataset.slot=n;
+      if(it){
+        const x=document.createElement('button'); x.className='x'; x.type='button'; x.textContent='×'; x.title='空にする';
+        x.addEventListener('pointerdown',e=>e.stopPropagation());
+        x.addEventListener('click',e=>{e.stopPropagation(); state[mode][li][n]=null; selected=null; save(); render();});
+        s.appendChild(x);
+        s.addEventListener('mouseenter',()=>showInfo(it, L, n));
+      }
+      if(selected&&selected.from&&selected.from.layer===li&&selected.from.slot===n) s.classList.add('selected');
+      s.addEventListener('dblclick',()=>{ state[mode][li][n]=null; selected=null; save(); render(); });
+      s.addEventListener('keydown',e=>{ if(e.key==='Delete'||e.key==='Backspace'){ state[mode][li][n]=null; save(); render(); } if(e.key==='Enter'||e.key===' '){ e.preventDefault(); clickSlot(li,n,it?id:null); } });
+      g.appendChild(s);
+    }
+    sec.appendChild(g); root.appendChild(sec);
+  });
+}
+function clickSlot(li,n,id){
+  if(selected){ place(selected.id,selected.from,li,n); selected=null; }
+  else if(id){ selected={id,from:{layer:li,slot:n}}; render(); }
+}
+function place(id, from, li, n){
+  const cur=state[mode][li][n];
+  if(from){ if(from.layer===li&&from.slot===n) return; state[mode][from.layer][from.slot]=cur||null; }
+  else { state[mode].forEach(L=>{for(const k in L) if(L[k]===id) L[k]=null;}); }
+  state[mode][li][n]=id; selected=null; save(); render();
+}
+function showInfo(it, L, n){
+  const d=displayItem(it);
+  const parts=[`<b>${d.name}</b>`];
+  if(it.kind==='action') parts.push(`Lv${it.lv}`);
+  if(EFF[it.id]) parts.push(`効果：${EFF[it.id]}`);
+  if(it.k) parts.push(`${it.k}／${it.a}／${it.c==='即'?'即時':it.c==='詠'?'詠唱あり':'詠唱'+it.c+'秒'}`);
+  { const rs=RES[it.id]; if(rs) parts.push(rs.replace('◆+','フロー獲得 ').replace(/◆(?!\+)/,'フロー消費 ').replace('妖','妖精')); }
+  { const r=RECAST[it.id]; if(r) parts.push(r==='GCD'?'GCD':r==='LB'?'LB':'リキャスト'+r+'秒'); }
+  if(it.chain) parts.push('<span class="muted">'+[it.name,...it.chain.map(c=>c[0]+'('+c[1]+')')].join(' → ')+'</span>');
+  if(it.note) parts.push('<span class="muted">'+it.note+'</span>');
+  if(L) parts.push(`<span class="muted">キー：${fkey(L.mod,n)}</span>`);
+  document.getElementById('info').innerHTML=parts.join('　');
+}
+function exportText(){
+  const lines=[`学者ホットバー（${mode.toUpperCase()}）Lv${lv}`];
+  LAYERS[mode].forEach((L,li)=>{
+    lines.push('', `層${li+1}（${L.key}）`);
+    [[3,6,9,12],[2,5,8,11],[1,4,7,10]].forEach(row=>{
+      lines.push(row.map(n=>{const id=state[mode][li][n]; const it=id?ALL[id]:null; return n+' '+(it?displayItem(it).name:'空');}).join(' | '));
+    });
+  });
+  const t=lines.join('\n'); document.getElementById('out').value=t; return t;
+}
+function render(){ renderPalette(); renderLayers(); exportText(); }
+
+// ---- pointer-based drag & drop (mouse + touch) ----
+let drag=null; // {id, from, ghost, startX, startY, moved, srcEl}
+document.addEventListener('pointerdown',e=>{
+  const el=e.target.closest('.tile'); if(!el||e.button!==0) return;
+  const id=el.dataset.id; const src=el.dataset.src;
+  const from = src==='slot' ? {layer:+el.dataset.layer, slot:+el.dataset.slot} : null;
+  drag={id:id||null, from, src, el, startX:e.clientX, startY:e.clientY, moved:false, ghost:null, pid:e.pointerId};
+});
+document.addEventListener('pointermove',e=>{
+  if(!drag) return;
+  if(!drag.moved){ if(Math.hypot(e.clientX-drag.startX,e.clientY-drag.startY)<6) return; if(!drag.id){ drag=null; return; }
+    drag.moved=true; const g=document.createElement('div'); g.className='ghost'; const im=drag.el.querySelector('img'); if(im){const c=im.cloneNode(); g.appendChild(c);} else {g.textContent=ALL[drag.id].name; g.style.background='var(--panel2)'; g.style.fontSize='11px'; g.style.display='grid'; g.style.placeItems='center';}
+    document.body.appendChild(g); drag.ghost=g; drag.el.classList.add('dragging'); }
+  e.preventDefault();
+  drag.ghost.style.left=(e.clientX-32)+'px'; drag.ghost.style.top=(e.clientY-32)+'px';
+  document.querySelectorAll('.tile.over').forEach(t=>t.classList.remove('over'));
+  const under=document.elementFromPoint(e.clientX,e.clientY); const t=under&&under.closest('.tile[data-src=slot]'); if(t) t.classList.add('over');
+});
+function endDrag(e){
+  if(!drag) return;
+  const d=drag; drag=null;
+  if(!d.moved){ // click
+    if(d.src==='slot') clickSlot(+d.el.dataset.layer,+d.el.dataset.slot,d.id);
+    else if(d.id){ selected=(selected&&selected.id===d.id&&!selected.from)?null:{id:d.id,from:null}; render(); }
+    return;
+  }
+  if(d.ghost) d.ghost.remove(); d.el.classList.remove('dragging');
+  document.querySelectorAll('.tile.over').forEach(t=>t.classList.remove('over'));
+  const under=document.elementFromPoint(e.clientX,e.clientY); if(!under) { render(); return; }
+  const t=under.closest('.tile[data-src=slot]');
+  if(t){ place(d.id,d.from,+t.dataset.layer,+t.dataset.slot); return; }
+  if(d.from && under.closest('#palette')){ state[mode][d.from.layer][d.from.slot]=null; save(); render(); return; }
+  render();
+}
+document.addEventListener('pointerup',endDrag);
+document.addEventListener('pointercancel',()=>{ if(drag){ if(drag.ghost) drag.ghost.remove(); drag.el.classList.remove('dragging'); drag=null; render(); } });
+
+document.getElementById('lv').addEventListener('input',e=>{lv=+e.target.value; document.getElementById('lvout').value=lv; save(); render();});
+['showlv','sort','palgroup'].forEach(id=>document.getElementById(id).addEventListener('change',render));
+document.getElementById('reset').addEventListener('click',()=>{ state[mode]=JSON.parse(JSON.stringify(DEFAULT[mode])); selected=null; save(); render(); });
+document.getElementById('clear').addEventListener('click',()=>{ state[mode].forEach(L=>{for(const k in L) L[k]=null}); selected=null; save(); render(); });
+document.querySelectorAll('[role=tab]').forEach(b=>b.addEventListener('click',()=>{ mode=b.dataset.mode; selected=null; document.querySelectorAll('[role=tab]').forEach(x=>x.setAttribute('aria-selected',x===b)); save(); render(); }));
+document.getElementById('copy').addEventListener('click',()=>{
+  const t=exportText(); const ta=document.getElementById('out');
+  const done=()=>{const el=document.getElementById('toast'); el.classList.add('show'); setTimeout(()=>el.classList.remove('show'),1400)};
+  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(done).catch(()=>{ta.select(); done();}); } else { ta.select(); done(); }
+});
+document.getElementById('lv').value=lv; document.getElementById('lvout').value=lv;
+document.querySelectorAll('[role=tab]').forEach(x=>x.setAttribute('aria-selected',x.dataset.mode===mode));
+render();
+</script>

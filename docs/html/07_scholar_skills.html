@@ -1,0 +1,1103 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FF14 学者（Scholar）アクション・特性リファレンス（パッチ7.5時点 / 2026年10月調査）</title><style>
+:root{--bg:#fbfaf7;--fg:#222;--muted:#666;--line:#ddd;--accent:#8a5a2b;--code:#f1efe9}
+@media (prefers-color-scheme:dark){:root{--bg:#1b1b1d;--fg:#e8e6e1;--muted:#9a9a9a;--line:#3a3a3d;--accent:#d9a86c;--code:#2a2a2e}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Meiryo","Noto Sans JP",system-ui,sans-serif;line-height:1.75;font-size:16px}
+main{max-width:860px;margin:0 auto;padding:32px 16px 64px}
+nav.top{font-size:14px;color:var(--muted);margin-bottom:8px}
+nav.top a{color:var(--accent);text-decoration:none}
+h1{font-size:1.8em;border-bottom:2px solid var(--accent);padding-bottom:6px;margin-top:0}
+h2{font-size:1.35em;margin-top:2em;border-left:5px solid var(--accent);padding-left:10px}
+h3{font-size:1.1em;margin-top:1.5em}
+a{color:var(--accent)}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14.5px;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:6px 10px;vertical-align:top;text-align:left}
+th{background:var(--code)}
+code{background:var(--code);padding:1px 5px;border-radius:4px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+pre{background:var(--code);padding:12px 14px;border-radius:8px;overflow-x:auto;border:1px solid var(--line)}
+pre code{background:none;padding:0}
+ul,ol{padding-left:1.5em}
+li{margin:3px 0}
+input[type=checkbox]{margin-right:6px;transform:scale(1.15)}
+footer{margin-top:48px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:12px}
+</style></head><body><main><nav class="top"><a href="00_index.html">FF14 ドキュメント索引</a> · <a href="01_naming.html">Tomatopii 命名リスト</a> · <a href="02_macros.html">FF14 マクロ集</a> · <a href="03_roadmap.html">FF14 ロードマップ</a> · <a href="04_events.html">FF14 開催中イベントまとめ（2026年10月）</a> · <a href="05_settings.html">FF14 設定・ギアセット・QoLまとめ</a> · <a href="06_irreversible.html">FF14 取り返しのつかない要素</a> · <a href="07_scholar_skills.html">FF14 学者（Scholar）アクション・特性リファレンス（パッチ7.5時点 / 2026年10月調査）</a></nav><h1>FF14 学者（Scholar）アクション・特性リファレンス（パッチ7.5時点 / 2026年10月調査）</h1>
+<ul>
+<li>数値（威力・回復力・リキャスト等）は公式ジョブガイド（日本語版）の記載をそのまま転記。公式ガイドは「Lv100時点で表示される内容」を掲載しているため、低レベル帯での威力は特性の記述から逆算できる範囲のみ補記し、不明なものは「要確認」とした。</li>
+<li>「種類」の凡例：<strong>魔法</strong>＝GCD（グローバルクールダウンに乗る）／<strong>アビリティ</strong>＝oGCD（GCDの合間に挟む）／<strong>ペット</strong>＝フェアリー・セラフィムが実行するアクション（ホットバー登録不可）。</li>
+<li>英語名は公式英語版ジョブガイド（NA）より。</li>
+<li>使い方・頻度の記述は The Balance（Patch 7.4 対応）、game8（Lv100スキル回し、最終更新 2025.11.21）、note「学者歴2ヶ月が考える学者の歩き方（7.05）」、Icy Veins（7.55）を出典とし、どのガイドの主張かを各所で明記した。</li>
+<li>パッチ7.5でのジョブ変更：The Balance の Job Changes ページには 7.4 の「蠱毒法 DoT威力 80→85」のみ記載。7.5 固有の学者変更は本調査では確認できなかった（<strong>要確認</strong>：公式 7.5 パッチノート）。</li>
+</ul>
+<hr />
+<h2>1. アクション一覧（Lv順）</h2>
+<h3>1-1. 専用アクション（ジョブアクション）</h3>
+<table>
+<thead>
+<tr>
+<th>Lv</th>
+<th>名前（英名）</th>
+<th>種類</th>
+<th>対象</th>
+<th>キャスト</th>
+<th>リキャスト</th>
+<th>威力 / 回復力</th>
+<th>消費</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>ルイン（Ruin）</td>
+<td>魔法</td>
+<td>敵単体</td>
+<td>1.5秒</td>
+<td>2.5秒</td>
+<td>威力150</td>
+<td>MP300</td>
+<td>無属性単体魔法攻撃。Lv54で気炎法に置換</td>
+</tr>
+<tr>
+<td>2</td>
+<td>バイオ（Bio）</td>
+<td>魔法</td>
+<td>敵単体</td>
+<td>Instant</td>
+<td>2.5秒</td>
+<td>DoT威力20 / 30秒</td>
+<td>MP300</td>
+<td>継続ダメージ。Lv26でバイオラに置換</td>
+</tr>
+<tr>
+<td>4</td>
+<td>フィジク（Physick）</td>
+<td>魔法</td>
+<td>味方単体</td>
+<td>1.5秒</td>
+<td>2.5秒</td>
+<td>回復力450</td>
+<td>MP400</td>
+<td>単体GCD回復（バリア無し）。射程30m</td>
+</tr>
+<tr>
+<td>4</td>
+<td>サモン・エオス（Summon Eos）</td>
+<td>魔法</td>
+<td>自分</td>
+<td>1.5秒</td>
+<td>2.5秒</td>
+<td>-</td>
+<td>MP200</td>
+<td>フェアリー召喚。インターセプト状態なら減ったHPの味方に「光の癒し」を自動実行</td>
+</tr>
+<tr>
+<td>12</td>
+<td>リザレク（Resurrection）</td>
+<td>魔法</td>
+<td>味方単体</td>
+<td>8秒</td>
+<td>2.5秒</td>
+<td>-</td>
+<td>MP2400</td>
+<td>衰弱状態で蘇生。射程30m</td>
+</tr>
+<tr>
+<td>20</td>
+<td>光の囁き（Whispering Dawn）</td>
+<td>アビリティ</td>
+<td>味方範囲（フェアリー周囲20m）</td>
+<td>Instant</td>
+<td>60秒</td>
+<td>HoT回復力80 / 21秒</td>
+<td>-</td>
+<td>フェアリーに実行させる。セラフィム中は「光輝の囁き」。条件：フェアリーまたはセラフィムが存在</td>
+</tr>
+<tr>
+<td>26</td>
+<td>バイオラ（Bio II）</td>
+<td>魔法</td>
+<td>敵単体</td>
+<td>Instant</td>
+<td>2.5秒</td>
+<td>DoT威力40 / 30秒</td>
+<td>MP300</td>
+<td>バイオの強化版。Lv72で蠱毒法に置換</td>
+</tr>
+<tr>
+<td>30</td>
+<td>鼓舞激励の策（Adloquium）※JQ</td>
+<td>魔法</td>
+<td>味方単体</td>
+<td>2秒</td>
+<td>2.5秒</td>
+<td>回復力300</td>
+<td>MP900</td>
+<td>回復＋バリア「鼓舞」（回復量の180%）。クリティカル時はさらに「激励」（回復量の180%）を付与。効果30秒。賢者の一部バリアと同時付与不可</td>
+</tr>
+<tr>
+<td>35</td>
+<td>士気高揚の策（Succor）※JQ</td>
+<td>魔法</td>
+<td>味方範囲（自分中心20m）</td>
+<td>2秒</td>
+<td>2.5秒</td>
+<td>回復力200</td>
+<td>MP900</td>
+<td>範囲回復＋バリア（回復量の160%）。効果30秒。Lv96で意気軒昂の策に置換</td>
+</tr>
+<tr>
+<td>38</td>
+<td>ルインラ（Ruin II）</td>
+<td>魔法</td>
+<td>敵単体</td>
+<td>Instant</td>
+<td>2.5秒</td>
+<td>威力220（Lv82〜）</td>
+<td>MP400</td>
+<td>無詠唱の移動用攻撃。威力は特性で段階上昇（Lv54:160 / Lv64:180 / Lv72:200 / Lv82:220。Lv54未満の威力は要確認）</td>
+</tr>
+<tr>
+<td>40</td>
+<td>フェイイルミネーション（Fey Illumination）</td>
+<td>アビリティ</td>
+<td>味方範囲（フェアリー周囲30m）</td>
+<td>Instant</td>
+<td>120秒</td>
+<td>-</td>
+<td>-</td>
+<td>フェアリーに実行させる。周囲の回復魔法の回復量+10%、被魔法ダメージ-5%、20秒。セラフィム中は「セラフィックイルミネーション」</td>
+</tr>
+<tr>
+<td>45</td>
+<td>エーテルフロー（Aetherflow）</td>
+<td>アビリティ</td>
+<td>自分</td>
+<td>Instant</td>
+<td>60秒</td>
+<td>-</td>
+<td>-</td>
+<td>MPを最大MPの20%回復＋エーテルフロー3スタック付与（永続）。条件：戦闘中</td>
+</tr>
+<tr>
+<td>45</td>
+<td>エナジードレイン（Energy Drain）</td>
+<td>アビリティ</td>
+<td>敵単体</td>
+<td>Instant</td>
+<td>1秒</td>
+<td>威力100</td>
+<td>エーテルフロー1</td>
+<td>攻撃＋与ダメの一部HP吸収。フェイエーテル+10。射程25m</td>
+</tr>
+<tr>
+<td>45</td>
+<td>生命活性法（Lustrate）※JQ</td>
+<td>アビリティ</td>
+<td>味方単体</td>
+<td>Instant</td>
+<td>1秒</td>
+<td>回復力600</td>
+<td>エーテルフロー1</td>
+<td>即時単体回復。フェイエーテル+10。射程30m</td>
+</tr>
+<tr>
+<td>46</td>
+<td>破陣法（Art of War）</td>
+<td>魔法</td>
+<td>敵範囲（自分中心5m）</td>
+<td>Instant</td>
+<td>2.5秒</td>
+<td>威力165（Lv54〜）</td>
+<td>MP400</td>
+<td>無詠唱の自己中心範囲攻撃。Lv82で裂陣法に置換（Lv54未満の威力は要確認）</td>
+</tr>
+<tr>
+<td>50</td>
+<td>野戦治療の陣（Sacred Soil）※JQ</td>
+<td>アビリティ</td>
+<td>地面指定（射程30m / 範囲15m）</td>
+<td>Instant</td>
+<td>30秒</td>
+<td>HoT回復力100 / 15秒（Lv78〜）</td>
+<td>エーテルフロー1</td>
+<td>範囲内の味方の被ダメージ-10%、15秒。継続回復はLv78特性で追加（Lv50〜77は軽減のみ）。フェイエーテル+10</td>
+</tr>
+<tr>
+<td>52</td>
+<td>不撓不屈の策（Indomitability）※JQ</td>
+<td>アビリティ</td>
+<td>味方範囲（自分中心20m）</td>
+<td>Instant</td>
+<td>30秒</td>
+<td>回復力400</td>
+<td>エーテルフロー1</td>
+<td>即時範囲回復。フェイエーテル+10</td>
+</tr>
+<tr>
+<td>54</td>
+<td>気炎法（Broil）※JQ</td>
+<td>魔法</td>
+<td>敵単体</td>
+<td>1.5秒</td>
+<td>2.5秒</td>
+<td>威力220</td>
+<td>MP400</td>
+<td>ルインの置換。Lv64で魔炎法に置換</td>
+</tr>
+<tr>
+<td>56</td>
+<td>展開戦術（Deployment Tactics）※JQ</td>
+<td>アビリティ</td>
+<td>味方単体→その周囲30m</td>
+<td>Instant</td>
+<td>90秒（Lv88〜。それ以前は要確認）</td>
+<td>-</td>
+<td>-</td>
+<td>対象の「鼓舞」を周囲の味方に拡散（残り時間はそのまま）。自分が付与した鼓舞が無いと無効。激励は拡散されない</td>
+</tr>
+<tr>
+<td>58</td>
+<td>応急戦術（Emergency Tactics）※JQ</td>
+<td>アビリティ</td>
+<td>自分</td>
+<td>Instant</td>
+<td>15秒</td>
+<td>-</td>
+<td>-</td>
+<td>15秒間、次の1回の鼓舞/激励付き回復魔法を、バリア無しの純回復に置き換える</td>
+</tr>
+<tr>
+<td>60</td>
+<td>転化（Dissipation）※JQ</td>
+<td>アビリティ</td>
+<td>自分</td>
+<td>Instant</td>
+<td>180秒</td>
+<td>-</td>
+<td>-</td>
+<td>フェアリーを帰還させ、エーテルフロー3スタック付与＋自身の回復魔法効果+20%、30秒。効果中はサモン・エオス不可、終了後フェアリー再出現。条件：戦闘中かつフェアリー存在（セラフィム中は不可）</td>
+</tr>
+<tr>
+<td>62</td>
+<td>深謀遠慮の策（Excogitation）</td>
+<td>アビリティ</td>
+<td>味方単体</td>
+<td>Instant</td>
+<td>45秒</td>
+<td>回復力800</td>
+<td>エーテルフロー1</td>
+<td>HP50%以下になるか45秒経過で発動する遅延回復。フェイエーテル+10。射程30m</td>
+</tr>
+<tr>
+<td>64</td>
+<td>魔炎法（Broil II）</td>
+<td>魔法</td>
+<td>敵単体</td>
+<td>1.5秒</td>
+<td>2.5秒</td>
+<td>威力240</td>
+<td>MP400</td>
+<td>Lv72で死炎法に置換</td>
+</tr>
+<tr>
+<td>66</td>
+<td>連環計（Chain Stratagem）</td>
+<td>アビリティ</td>
+<td>敵単体</td>
+<td>Instant</td>
+<td>120秒</td>
+<td>-</td>
+<td>-</td>
+<td>対象の被クリティカル率+10%、20秒。追加：自身に「埋伏の毒実行可」30秒（Lv92特性）。射程25m</td>
+</tr>
+<tr>
+<td>70</td>
+<td>エーテルパクト（Aetherpact）※JQ</td>
+<td>アビリティ</td>
+<td>味方単体</td>
+<td>Instant</td>
+<td>3秒</td>
+<td>HoT回復力300（3秒毎、要確認）</td>
+<td>フェイエーテル10/tick</td>
+<td>フェアリーに「フェイユニオン」を実行させ対象を継続回復。再使用で解除。対象がフェアリーの30m外に出ると無効。実行中フェアリーは他の行動不可。条件：フェアリー存在かつフェイエーテル10以上</td>
+</tr>
+<tr>
+<td>70</td>
+<td>フェイユニオン解除（Dissolve Union）</td>
+<td>アビリティ</td>
+<td>自分</td>
+<td>Instant</td>
+<td>1秒</td>
+<td>-</td>
+<td>-</td>
+<td>フェイユニオンを解除する（エーテルパクト実行中に置き換わる形で使用）</td>
+</tr>
+<tr>
+<td>72</td>
+<td>蠱毒法（Biolysis）</td>
+<td>魔法</td>
+<td>敵単体</td>
+<td>Instant</td>
+<td>2.5秒</td>
+<td>DoT威力85（Lv94〜。Lv72〜93は要確認） / 30秒</td>
+<td>MP400</td>
+<td>バイオラの置換。最終DoT</td>
+</tr>
+<tr>
+<td>72</td>
+<td>死炎法（Broil III）</td>
+<td>魔法</td>
+<td>敵単体</td>
+<td>1.5秒</td>
+<td>2.5秒</td>
+<td>威力255</td>
+<td>MP400</td>
+<td>Lv82で極炎法に置換</td>
+</tr>
+<tr>
+<td>74</td>
+<td>秘策（Recitation）</td>
+<td>アビリティ</td>
+<td>自分</td>
+<td>Instant</td>
+<td>60秒（Lv98〜。Lv74〜97は90秒）</td>
+<td>-</td>
+<td>-</td>
+<td>15秒間、次の1回の「鼓舞激励の策」「意気軒昂の策（士気高揚の策）」「不撓不屈の策」「深謀遠慮の策」をMP/エーテルフロー消費無し＋確定クリティカルにする</td>
+</tr>
+<tr>
+<td>76</td>
+<td>フェイブレッシング（Fey Blessing）</td>
+<td>アビリティ</td>
+<td>味方範囲（フェアリー周囲20m）</td>
+<td>Instant</td>
+<td>60秒</td>
+<td>回復力320</td>
+<td>-</td>
+<td>フェアリーに実行させる即時範囲回復。条件：フェアリー存在（セラフィム中は不可）</td>
+</tr>
+<tr>
+<td>80</td>
+<td>サモン・セラフィム（Summon Seraph）</td>
+<td>アビリティ</td>
+<td>自分</td>
+<td>Instant</td>
+<td>120秒</td>
+<td>-</td>
+<td>-</td>
+<td>フェアリーを帰還させセラフィムを22秒召喚。インターセプト状態なら「セラフィックヴェール」（回復＋バリア）を自動実行。帰還後フェアリー再出現。条件：フェアリー存在</td>
+</tr>
+<tr>
+<td>80</td>
+<td>コンソレイション（Consolation）</td>
+<td>アビリティ</td>
+<td>味方範囲（セラフィム周囲30m）</td>
+<td>Instant</td>
+<td>30秒（最大2チャージ）</td>
+<td>回復力250</td>
+<td>-</td>
+<td>セラフィムに実行させる範囲回復＋バリア（回復量の100%、30秒）。条件：セラフィム存在</td>
+</tr>
+<tr>
+<td>82</td>
+<td>極炎法（Broil IV）</td>
+<td>魔法</td>
+<td>敵単体</td>
+<td>1.5秒</td>
+<td>2.5秒</td>
+<td>威力320（Lv94〜。Lv82〜93は要確認）</td>
+<td>MP400</td>
+<td>メイン攻撃魔法（最終形）</td>
+</tr>
+<tr>
+<td>82</td>
+<td>裂陣法（Art of War II）</td>
+<td>魔法</td>
+<td>敵範囲（自分中心5m）</td>
+<td>Instant</td>
+<td>2.5秒</td>
+<td>威力180</td>
+<td>MP400</td>
+<td>破陣法の置換。最終範囲攻撃</td>
+</tr>
+<tr>
+<td>86</td>
+<td>生命回生法（Protraction）</td>
+<td>アビリティ</td>
+<td>味方単体</td>
+<td>Instant</td>
+<td>60秒</td>
+<td>最大HPの10%分回復</td>
+<td>-</td>
+<td>対象の最大HP+10%、受ける回復効果+10%、10秒。射程30m</td>
+</tr>
+<tr>
+<td>90</td>
+<td>疾風怒濤の計（Expedient）</td>
+<td>アビリティ</td>
+<td>味方範囲（自分中心30m）</td>
+<td>Instant</td>
+<td>120秒</td>
+<td>-</td>
+<td>-</td>
+<td>「疾風の計」移動速度上昇10秒＋「怒涛の計」被ダメージ-10% 20秒</td>
+</tr>
+<tr>
+<td>92</td>
+<td>埋伏の毒（Baneful Impaction）</td>
+<td>アビリティ</td>
+<td>敵単体＋周囲5m</td>
+<td>Instant</td>
+<td>1秒</td>
+<td>DoT威力140 / 15秒</td>
+<td>-</td>
+<td>範囲DoT。条件：「埋伏の毒実行可」中（連環計実行後30秒以内）。射程25m</td>
+</tr>
+<tr>
+<td>96</td>
+<td>意気軒昂の策（Concitation）</td>
+<td>魔法</td>
+<td>味方範囲（自分中心20m）</td>
+<td>2秒</td>
+<td>2.5秒</td>
+<td>回復力200</td>
+<td>MP900</td>
+<td>士気高揚の策の置換。範囲回復＋バリア（回復量の180%）、30秒</td>
+</tr>
+<tr>
+<td>100</td>
+<td>セラフィズム（Seraphism）</td>
+<td>アビリティ</td>
+<td>自分（効果は周囲50mの味方）</td>
+<td>Instant</td>
+<td>180秒</td>
+<td>HoT回復力100 / 20秒</td>
+<td>-</td>
+<td>20秒間、自身と周囲50m以内の味方を継続回復。鼓舞激励の策→マニフェステーション、意気軒昂の策→アクセッションに変化。応急戦術のリキャストをリセットし1秒に短縮。転化とは同時付与不可。条件：戦闘中かつフェアリー/セラフィム存在</td>
+</tr>
+<tr>
+<td>100</td>
+<td>マニフェステーション（Manifestation）</td>
+<td>魔法</td>
+<td>味方単体</td>
+<td>Instant</td>
+<td>2.5秒</td>
+<td>回復力360</td>
+<td>MP900</td>
+<td>セラフィズム中のみ。鼓舞（180%）＋クリ時激励（180%）。<strong>ホットバー登録不可</strong></td>
+</tr>
+<tr>
+<td>100</td>
+<td>アクセッション（Accession）</td>
+<td>魔法</td>
+<td>味方範囲（自分中心20m）</td>
+<td>Instant</td>
+<td>2.5秒</td>
+<td>回復力240</td>
+<td>MP900</td>
+<td>セラフィズム中のみ。範囲回復＋バリア（回復量の180%）。<strong>ホットバー登録不可</strong></td>
+</tr>
+</tbody>
+</table>
+<p>※JQ＝ジョブクエストで習得（公式表記）。</p>
+<h3>1-2. ペットアクション（フェアリー／セラフィムが実行。すべて<strong>ホットバー登録不可</strong>）</h3>
+<table>
+<thead>
+<tr>
+<th>Lv</th>
+<th>名前（英名）</th>
+<th>実行者</th>
+<th>種類</th>
+<th>対象</th>
+<th>リキャスト</th>
+<th>回復力</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>光の癒し（Embrace）</td>
+<td>フェアリー</td>
+<td>魔法</td>
+<td>味方単体（射程30m）</td>
+<td>3秒</td>
+<td>180</td>
+<td>インターセプト時にHPが減った味方へ自動実行（3秒毎）</td>
+</tr>
+<tr>
+<td>20</td>
+<td>光の囁き（Whispering Dawn）</td>
+<td>フェアリー</td>
+<td>アビリティ</td>
+<td>味方範囲20m</td>
+<td>-</td>
+<td>HoT80 / 21秒</td>
+<td>学者側の「光の囁き」で発動</td>
+</tr>
+<tr>
+<td>40</td>
+<td>フェイイルミネーション（Fey Illumination）</td>
+<td>フェアリー</td>
+<td>アビリティ</td>
+<td>味方範囲30m</td>
+<td>-</td>
+<td>-</td>
+<td>回復魔法量+10%、被魔法ダメ-5%、20秒。セラフィックイルミネーションと同時付与不可</td>
+</tr>
+<tr>
+<td>70</td>
+<td>フェイユニオン（Fey Union）</td>
+<td>フェアリー</td>
+<td>アビリティ</td>
+<td>味方単体（射程30m）</td>
+<td>-</td>
+<td>HoT300</td>
+<td>エーテルパクトで発動。フェイエーテル10/tick 消費</td>
+</tr>
+<tr>
+<td>76</td>
+<td>フェイブレッシング（Fey Blessing）</td>
+<td>フェアリー</td>
+<td>アビリティ</td>
+<td>味方範囲20m</td>
+<td>-</td>
+<td>320</td>
+<td>学者側の「フェイブレッシング」で発動</td>
+</tr>
+<tr>
+<td>80</td>
+<td>セラフィックヴェール（Seraphic Veil）</td>
+<td>セラフィム</td>
+<td>魔法</td>
+<td>味方単体（射程30m）</td>
+<td>3秒</td>
+<td>180</td>
+<td>セラフィム版「光の癒し」。回復＋バリア（回復量の100%、30秒）</td>
+</tr>
+<tr>
+<td>80</td>
+<td>光輝の囁き（Angel's Whisper）</td>
+<td>セラフィム</td>
+<td>アビリティ</td>
+<td>味方範囲20m</td>
+<td>-</td>
+<td>HoT80 / 21秒</td>
+<td>セラフィム版「光の囁き」</td>
+</tr>
+<tr>
+<td>80</td>
+<td>セラフィックイルミネーション（Seraphic Illumination）</td>
+<td>セラフィム</td>
+<td>アビリティ</td>
+<td>味方範囲30m</td>
+<td>-</td>
+<td>-</td>
+<td>セラフィム版フェイイルミネーション（同効果）</td>
+</tr>
+<tr>
+<td>80</td>
+<td>コンソレイション（Consolation）</td>
+<td>セラフィム</td>
+<td>アビリティ</td>
+<td>味方範囲30m</td>
+<td>-</td>
+<td>250</td>
+<td>回復＋バリア（回復量の100%、30秒）</td>
+</tr>
+</tbody>
+</table>
+<p>ペットアクション（指示）：帰還／追従／移動／待機／インターセプト（自分が攻撃するか攻撃を受けるまで戦闘しない）／ピース（指示を出すまで戦闘しない）。通常は「インターセプト」にしておく（公式記述：インターセプト時に光の癒しを自動実行）。</p>
+<hr />
+<h2>2. 置き換え・自動強化</h2>
+<table>
+<thead>
+<tr>
+<th>元のボタン</th>
+<th>変化後</th>
+<th>Lv</th>
+<th>特性名</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>バイオ</td>
+<td>バイオラ</td>
+<td>26</td>
+<td>コラプションマスタリー</td>
+<td>DoT威力20→40</td>
+</tr>
+<tr>
+<td>バイオラ</td>
+<td>蠱毒法</td>
+<td>72</td>
+<td>コラプションマスタリーII</td>
+<td>DoT威力40→（要確認）→Lv94で85</td>
+</tr>
+<tr>
+<td>ルイン</td>
+<td>気炎法</td>
+<td>54</td>
+<td>炎法マスタリー</td>
+<td>同特性でルインラ威力160、破陣法威力165に上昇</td>
+</tr>
+<tr>
+<td>気炎法</td>
+<td>魔炎法</td>
+<td>64</td>
+<td>炎法マスタリーII</td>
+<td>ルインラ威力180に上昇</td>
+</tr>
+<tr>
+<td>魔炎法</td>
+<td>死炎法</td>
+<td>72</td>
+<td>炎法マスタリーIII</td>
+<td>ルインラ威力200に上昇</td>
+</tr>
+<tr>
+<td>死炎法</td>
+<td>極炎法</td>
+<td>82</td>
+<td>炎法マスタリーIV</td>
+<td>ルインラ威力220に上昇。極炎法はLv94「アクション威力アップ」で320</td>
+</tr>
+<tr>
+<td>破陣法</td>
+<td>裂陣法</td>
+<td>82</td>
+<td>破陣法マスタリー</td>
+<td>威力165→180</td>
+</tr>
+<tr>
+<td>士気高揚の策</td>
+<td>意気軒昂の策</td>
+<td>96</td>
+<td>士気高揚の策マスタリー</td>
+<td><strong>Lv96で置き換わる</strong>（特性で明記）。バリア倍率160%→180%</td>
+</tr>
+<tr>
+<td>鼓舞激励の策</td>
+<td>マニフェステーション</td>
+<td>100（セラフィズム効果中のみ）</td>
+<td>（特性ではなくセラフィズムの効果）</td>
+<td>無詠唱・回復力360。効果終了で鼓舞激励の策に戻る。<strong>マニフェステーションはホットバー登録不可</strong></td>
+</tr>
+<tr>
+<td>意気軒昂の策</td>
+<td>アクセッション</td>
+<td>100（セラフィズム効果中のみ）</td>
+<td>（セラフィズムの効果）</td>
+<td>無詠唱・回復力240。<strong>アクセッションはホットバー登録不可</strong></td>
+</tr>
+<tr>
+<td>エーテルパクト</td>
+<td>フェイユニオン解除</td>
+<td>70</td>
+<td>-</td>
+<td>フェイユニオン実行中、エーテルパクトのボタンが「フェイユニオン解除」として機能（公式：「再使用で解除する」）。フェイユニオン解除は独立アクションとしても存在</td>
+</tr>
+<tr>
+<td>連環計 → 埋伏の毒</td>
+<td>（置き換えではなく別ボタン）</td>
+<td>92</td>
+<td>連環計効果アップ</td>
+<td>連環計実行時に「埋伏の毒実行可」（30秒）が付与され、その間だけ埋伏の毒を使用可能。game8 は「連環計が埋伏の毒に置き換わる」と記述しているが、公式ガイド上は別アクション（発動条件付き）。ホットバー上での表示挙動は要確認</td>
+</tr>
+<tr>
+<td>サモン・セラフィム → コンソレイション</td>
+<td>（別ボタン）</td>
+<td>80</td>
+<td>-</td>
+<td>The Balance FAQ：「セラフィム召喚中、サモン・セラフィムのボタンはコンソレイションになる」。召喚後1秒はコンソレイション不可（ダブルウィーブ不可）</td>
+</tr>
+<tr>
+<td>光の囁き</td>
+<td>光輝の囁き（セラフィム中）</td>
+<td>80</td>
+<td>-</td>
+<td>同ボタンでセラフィム版を実行</td>
+</tr>
+<tr>
+<td>フェイイルミネーション</td>
+<td>セラフィックイルミネーション（セラフィム中）</td>
+<td>80</td>
+<td>-</td>
+<td>同ボタンでセラフィム版を実行</td>
+</tr>
+<tr>
+<td>野戦治療の陣</td>
+<td>（強化）</td>
+<td>78</td>
+<td>野戦治療の陣効果アップ</td>
+<td>継続回復（回復力100）が追加</td>
+</tr>
+<tr>
+<td>展開戦術</td>
+<td>（強化）</td>
+<td>88</td>
+<td>展開戦術効果アップ</td>
+<td>リキャスト90秒に短縮</td>
+</tr>
+<tr>
+<td>秘策</td>
+<td>（強化）</td>
+<td>98</td>
+<td>秘策効果アップ</td>
+<td>リキャスト60秒に短縮（game8：従来90秒）</td>
+</tr>
+<tr>
+<td>迅速魔</td>
+<td>（強化）</td>
+<td>94</td>
+<td>迅速魔効果アップ（ロール特性）</td>
+<td>リキャスト40秒に短縮</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ホットバーに登録できないアクション（公式明記）</strong>：光の癒し、光の囁き（ペット側）、フェイイルミネーション（ペット側）、フェイユニオン、フェイブレッシング（ペット側）、セラフィックヴェール、光輝の囁き、セラフィックイルミネーション、コンソレイション（ペット側）、マニフェステーション、アクセッション。
+（学者側の「光の囁き」「フェイイルミネーション」「フェイブレッシング」「コンソレイション」「エーテルパクト」は登録可能。）</p>
+<hr />
+<h2>3. ロールアクション（ヒーラー共通）</h2>
+<table>
+<thead>
+<tr>
+<th>Lv</th>
+<th>名前（英名）</th>
+<th>種類</th>
+<th>対象</th>
+<th>キャスト</th>
+<th>リキャスト</th>
+<th>消費MP</th>
+<th>効果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8</td>
+<td>リポーズ（Repose）</td>
+<td>魔法</td>
+<td>敵単体（30m）</td>
+<td>2.5秒</td>
+<td>2.5秒</td>
+<td>MP600</td>
+<td>睡眠を付与、30秒。実行後オートアタック停止</td>
+</tr>
+<tr>
+<td>10</td>
+<td>エスナ（Esuna）</td>
+<td>魔法</td>
+<td>味方単体（30m）</td>
+<td>Instant</td>
+<td>2.5秒</td>
+<td>MP400</td>
+<td>一部の弱体効果を1つ解除</td>
+</tr>
+<tr>
+<td>14</td>
+<td>ルーシッドドリーム（Lucid Dreaming）</td>
+<td>アビリティ</td>
+<td>自分</td>
+<td>Instant</td>
+<td>60秒</td>
+<td>-</td>
+<td>MP継続回復（効果量55、21秒）</td>
+</tr>
+<tr>
+<td>18</td>
+<td>迅速魔（Swiftcast）</td>
+<td>アビリティ</td>
+<td>自分</td>
+<td>Instant</td>
+<td>40秒（Lv94〜。それ以前は60秒、要確認）</td>
+<td>-</td>
+<td>次の1回の魔法を無詠唱化、10秒</td>
+</tr>
+<tr>
+<td>44</td>
+<td>堅実魔（Surecast）</td>
+<td>アビリティ</td>
+<td>自分</td>
+<td>Instant</td>
+<td>120秒</td>
+<td>-</td>
+<td>6秒間、詠唱妨害無効＋一部を除くノックバック・引き寄せ無効</td>
+</tr>
+<tr>
+<td>48</td>
+<td>救出（Rescue）</td>
+<td>アビリティ</td>
+<td>味方単体（30m）</td>
+<td>Instant</td>
+<td>120秒</td>
+<td>-</td>
+<td>対象を自身の近くに引き寄せる。一部状態異常中・非戦闘中は無効。条件：戦闘中</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 特性一覧</h2>
+<table>
+<thead>
+<tr>
+<th>Lv</th>
+<th>名前（英名）</th>
+<th>効果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20</td>
+<td>アクションダメージ・回復量アップ（Maim and Mend）</td>
+<td>オートアタックを除く自身のアクションおよびペットのダメージ・回復量をベース値の1.1倍</td>
+</tr>
+<tr>
+<td>26</td>
+<td>コラプションマスタリー（Corruption Mastery）</td>
+<td>バイオ→バイオラ</td>
+</tr>
+<tr>
+<td>40</td>
+<td>アクションダメージ・回復量アップII（Maim and Mend II）</td>
+<td>同上、1.3倍</td>
+</tr>
+<tr>
+<td>54</td>
+<td>炎法マスタリー（Broil Mastery）※JQ</td>
+<td>ルイン→気炎法。ルインラ威力160、破陣法威力165</td>
+</tr>
+<tr>
+<td>64</td>
+<td>炎法マスタリーII（Broil Mastery II）</td>
+<td>気炎法→魔炎法。ルインラ威力180</td>
+</tr>
+<tr>
+<td>72</td>
+<td>コラプションマスタリーII（Corruption Mastery II）</td>
+<td>バイオラ→蠱毒法</td>
+</tr>
+<tr>
+<td>72</td>
+<td>炎法マスタリーIII（Broil Mastery III）</td>
+<td>魔炎法→死炎法。ルインラ威力200</td>
+</tr>
+<tr>
+<td>78</td>
+<td>野戦治療の陣効果アップ（Enhanced Sacred Soil）</td>
+<td>野戦治療の陣に範囲内継続回復を追加</td>
+</tr>
+<tr>
+<td>82</td>
+<td>炎法マスタリーIV（Broil Mastery IV）</td>
+<td>死炎法→極炎法。ルインラ威力220</td>
+</tr>
+<tr>
+<td>82</td>
+<td>破陣法マスタリー（Art of War Mastery）</td>
+<td>破陣法→裂陣法</td>
+</tr>
+<tr>
+<td>85</td>
+<td>回復アクション効果アップ（Enhanced Healing Magic）</td>
+<td>フィジク回復力450、光の癒し回復力180、鼓舞激励の策バリア180%、士気高揚の策バリア160%、セラフィックヴェール回復力180</td>
+</tr>
+<tr>
+<td>88</td>
+<td>展開戦術効果アップ（Enhanced Deployment Tactics）</td>
+<td>展開戦術リキャスト90秒</td>
+</tr>
+<tr>
+<td>92</td>
+<td>連環計効果アップ（Enhanced Chain Stratagem）</td>
+<td>連環計実行時に「埋伏の毒実行可」（30秒）を付与</td>
+</tr>
+<tr>
+<td>94</td>
+<td>アクション威力アップ（Tactician's Mastery）</td>
+<td>蠱毒法DoT威力85、極炎法威力320</td>
+</tr>
+<tr>
+<td>96</td>
+<td>士気高揚の策マスタリー（Succor Mastery）</td>
+<td>士気高揚の策→意気軒昂の策</td>
+</tr>
+<tr>
+<td>98</td>
+<td>秘策効果アップ（Enhanced Recitation）</td>
+<td>秘策リキャスト60秒</td>
+</tr>
+<tr>
+<td>94（ロール特性）</td>
+<td>迅速魔効果アップ（Enhanced Swiftcast）</td>
+<td>迅速魔リキャスト40秒</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. 使い方と頻度</h2>
+<h3>5-1. 頻度カテゴリ別分類</h3>
+<table>
+<thead>
+<tr>
+<th>カテゴリ</th>
+<th>アクション</th>
+<th>根拠</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>毎戦闘（連打・周期）</strong></td>
+<td>極炎法（空いたGCDは全てこれ）／蠱毒法（30秒毎に更新、残り3秒前が目安）／エーテルフロー（60秒毎、リキャスト即・ただし残スタックを使い切ってから）／エナジードレイン（余ったエーテルフローを消費、1秒リキャスト）／連環計（120秒毎、リキャスト毎に。PTでバフを合わせる場合は2分バーストに）／埋伏の毒（連環計のたびに、バフ内で）／転化（火力目的なら可能な限り毎回＝180秒毎。ただしGCDヒールを強制されるなら避ける）／光の囁き（60秒毎、雑魚・全体攻撃に合わせリキャスト毎）／フェイブレッシング（60秒毎、範囲不要ならタンク回復に）</td>
+<td>The Balance Skills Overview / Basic Guide（7.4）、game8、note、Icy Veins</td>
+</tr>
+<tr>
+<td><strong>全体攻撃の前後</strong></td>
+<td>野戦治療の陣（全体攻撃に合わせ軽減＋HoT。PTが陣内に留まる場面）／不撓不屈の策（即時全体回復。秘策と組み合わせると最強の範囲バースト回復）／鼓舞激励の策→展開戦術（痛い全体攻撃前のPTバリア。開幕前やダウンタイム中が基本）／意気軒昂の策・アクセッション（鼓舞＋展開ができない時、コンソレイション不可時の範囲バリア）／コンソレイション（短時間に複数の全体攻撃が来る場面）／フェイイルミネーション（GCDバリアを厚くする目的、魔法軽減）／疾風怒濤の計（20秒の長い軽減、移動が必要なギミック）／生命回生法（全体攻撃前に戻り切っていない人への疑似バリア、鼓舞・深謀遠慮の前）</td>
+<td>The Balance Skills Overview、note、game8</td>
+</tr>
+<tr>
+<td><strong>バースト（2分）</strong></td>
+<td>連環計（偶数分に合わせる）／埋伏の毒（連環計直後〜30秒内、バフ内）／エナジードレイン（エーテルフロー3＋転化3で最大6回をバフ内に）／蠱毒法の早期更新（バフ終了際にクリップして更新し、バフを1回多く乗せる）</td>
+<td>The Balance Openers（7.4）、game8「転化回し」、note</td>
+</tr>
+<tr>
+<td><strong>緊急</strong></td>
+<td>生命活性法（深謀遠慮・野戦治療の陣が使えない時の即時単体回復）／深謀遠慮の策（HP50%以下の対象に撃てば即時800回復）／エーテルパクト（タンクの集中回復、フェイエーテルがある時）／応急戦術（鼓舞・意気軒昂を純回復化。セラフィズム中は1秒リキャストで連発可）／セラフィズム（無詠唱GCD回復で立て直し。MP消費は軽減されない）／転化（緊急時の回復魔法+20%＋スタック3）／秘策（確定クリ鼓舞→展開、またはフロー消費無しの不撓不屈/深謀遠慮）／迅速魔＋リザレク（蘇生。プログ中は迅速魔を温存）</td>
+<td>The Balance Skills Overview、note、game8</td>
+</tr>
+<tr>
+<td><strong>稀・状況限定</strong></td>
+<td>フィジク（MP枯渇でoGCDも無い時のみ）／ルインラ（スライドキャストや迅速魔でも対応できない強制移動時、またはoGCDを2つ挟みたい時）／破陣法・裂陣法（単体では使わない。敵2体以上）／エスナ（Doom等の致死デバフのみ解除）／リポーズ（使わない）／救出・堅実魔（ギミック限定）／ルーシッドドリーム（MP8000未満で使用）／展開戦術の戦闘中使用（バリアが割れる前に撃てる時のみ）</td>
+<td>The Balance Skills Overview / Leveling Guide</td>
+</tr>
+</tbody>
+</table>
+<h3>5-2. Lv100 単体スキル回し（開幕〜2分ループ）</h3>
+<p><strong>The Balance「Early Refresh, 2nd GCD Chain」（Dawntrail 7.0 画像、7.4ページに掲載）</strong></p>
+<ul>
+<li>−1.5秒：極炎法（プリキャスト）</li>
+<li>GCD1：蠱毒法 →（薬）→ 転化（※画像上は「Dissipation」表記。Openersページは「エーテルフローと転化は入れ替え可」としており、どちらを先にするかは下記トレードオフ参照）</li>
+<li>GCD2：極炎法</li>
+<li>GCD3：極炎法 → 連環計</li>
+<li>GCD4：極炎法 → エナジードレイン</li>
+<li>GCD5：極炎法 → エナジードレイン</li>
+<li>GCD6：極炎法 → エナジードレイン</li>
+<li>GCD7：極炎法 → エーテルフロー（画像ラベルは「Dissipact」だが、転化は180秒リキャストのため2回目はエーテルフローと解釈。<strong>要確認</strong>）</li>
+<li>GCD8：極炎法 → 埋伏の毒</li>
+<li>GCD9：極炎法 → エナジードレイン</li>
+<li>GCD10：極炎法 → エナジードレイン</li>
+<li>GCD11：蠱毒法 → エナジードレイン（バフ終了際の早期更新）</li>
+</ul>
+<p>転化先行のトレードオフ（The Balance Openers）：フェアリーが約15秒早く戻る／エーテルフローのMP2000が遅れて来るので溢れにくい／2分時に6回エナジードレインのバフ窓が揃う。欠点：戦闘全体でエーテルフロー使用回数を1回失うリスク、エーテルフローの戻りタイミングが変わりヒール計画に影響。</p>
+<p><strong>game8「転化回し」（Lv100、最終更新2025.11.21）</strong>：
+極炎法 → 蠱毒法 → エーテルフロー → 極炎法 → 極炎法 → 連環計 → 極炎法 → エナジードレイン → 極炎法 → エナジードレイン → 極炎法 → エナジードレイン → 極炎法 → 転化 → 極炎法 → 埋伏の毒 → 極炎法 → エナジードレイン → 極炎法 → エナジードレイン。
+（開幕の極炎法後に薬。回復が必要ならエナジードレインをヒールスキルに置き換える。妖精を早く戻したい時は3番目のエーテルフローと14番目の転化を入れ替える。）</p>
+<p><strong>2分ループの骨組み（note・The Balance Basic Guide の記述を統合）</strong>
+- 連環計（120秒）を偶数分の基準にし、エーテルフロー（60秒）を毎分リキャスト即押し。両者にその他の長リキャストを割り振る。
+- 転化（180秒）は2分周期と噛み合わないため、火力重視なら毎回リキャスト即（ただし、その後30秒フェアリー不在で問題ない場面のみ）。
+- 連環計直後に埋伏の毒。エーテルフロー分のエナジードレインはバフ内に寄せる。
+- 蠱毒法は30秒毎。バフ終了際に早期更新してバフ内DoTを1回増やす（The Balance Openers）。
+- 余った移動時間は蠱毒法（無詠唱）のタイミングや極炎法後の約1秒＋スライドキャスト約0.5秒で処理し、ルインラは最後の手段（The Balance Basic Guide）。</p>
+<h3>5-3. 範囲（複数敵）時の回し</h3>
+<ul>
+<li>2〜4体：全ての敵に蠱毒法を撒いてから裂陣法を連打（The Balance Skills Overview）。5体以上：DoTは省略して裂陣法のみ。</li>
+<li>Icy Veins（7.55）：バイオラは2体まで、蠱毒法は3〜4体まで維持。裂陣法（破陣法）は2体以上で使用。</li>
+<li>The Balance Leveling Guide：破陣法はLv46〜で2体以上（Lv64〜は単体では不使用）、Lv72〜は5体以上、Lv82〜（裂陣法）は4体以上、Lv94〜は5体以上、と閾値を記述（版によって揺れあり、要確認）。</li>
+<li>雑魚でも連環計→埋伏の毒を使う。埋伏の毒は群れの中央の敵を対象にして全員にDoTを乗せる（The Balance）。パックが15秒以上生きるなら連環計を使う（Icy Veins）。</li>
+<li>裂陣法は無詠唱なのでoGCDを2つ挟める。</li>
+<li>雑魚道中のヒール：エーテルフロー系（野戦治療の陣、不撓不屈）、フェアリー系（光の囁き、フェイブレッシング、エーテルパクト）、プルごとにタンクへ鼓舞激励の策（The Balance Leveling Guide）。</li>
+</ul>
+<h3>5-4. ヒールの優先順位</h3>
+<p>The Balance Basic Guide（7.4）：<strong>無償回復（フェアリー系・リキャスト系）＞エーテルフロー回復＞GCD回復</strong>。
+相対コスト：無償回復 0威力 ／ エーテルフロー回復 −100威力（エナジードレイン1回分） ／ GCD回復 −310威力（極炎法1回分）。</p>
+<p>具体的な順序（The Balance Skills Overview の記述を再構成）：
+1. フェアリー・リキャストのみのoGCD：光の囁き／フェイブレッシング／フェイイルミネーション／エーテルパクト／コンソレイション／疾風怒濤の計／生命回生法
+2. エーテルフロー消費のoGCD：野戦治療の陣（Lv78以降は最優先のフロー回復。PTが留まる場面）＞深謀遠慮の策（タンク事前回復。Lv62〜は生命活性法より優先）＞不撓不屈の策（秘策との組み合わせ、または陣が使えない時）＞生命活性法（深謀遠慮・陣が使えない時のみ）
+3. GCD回復（最後の手段）：鼓舞激励の策（タンクバスター、または展開戦術用）／意気軒昂の策（コンソレイション不可時の範囲バリア）／フィジク（MP枯渇時のみ）／応急戦術付きGCD（HP全回復チェックや、コヒーラーにもoGCDが無い時のみ）</p>
+<p>例外：後のギミックのためにリソースを温存する場合、野戦治療の陣や展開鼓舞のような軽減がギミックを大幅に楽にする場合（The Balance）。
+note（7.05）：学者は見てから動くと間に合わないため、全体攻撃ごとに事前にバリアを仕込む。MPは蘇生（2400）とミスのカバー用に残す。学者は燃費が悪く、特にセラフィズム中はMPが急減する。</p>
+<hr />
+<h2>6. レベル帯別：その時点で使うスキル</h2>
+<p>出典：The Balance Leveling Guide（7.4）を主とし、公式ガイドの習得Lvで補正。</p>
+<table>
+<thead>
+<tr>
+<th>Lv</th>
+<th>攻撃</th>
+<th>回復・軽減（oGCD）</th>
+<th>回復（GCD）</th>
+<th>その他</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>50</strong></td>
+<td>ルイン（フィラー）、バイオラ（30秒更新）、ルインラ（移動時）、破陣法（2体以上）、エナジードレイン（余りフロー）</td>
+<td>エーテルフロー（リキャスト毎）、光の囁き、フェイイルミネーション（プル前バリア強化）、生命活性法。野戦治療の陣は習得するがBalanceは「この段階ではフローを生命活性法に回す方が良い」として不使用（軽減が必要な時のみ）</td>
+<td>鼓舞激励の策（プル前にタンクへ）、士気高揚の策（ボスの全体攻撃のみ）、フィジク（MP枯渇時）</td>
+<td>迅速魔＋リザレク、ルーシッドドリーム、堅実魔、救出</td>
+</tr>
+<tr>
+<td><strong>60</strong></td>
+<td>気炎法、バイオラ、ルインラ、破陣法（2体以上）、エナジードレイン</td>
+<td>上記＋不撓不屈の策（範囲フロー回復）、展開戦術（プル前・ボス用）、応急戦術（稀）、転化（プル終わり際にスタック補充、緊急時）</td>
+<td>鼓舞激励の策、士気高揚の策</td>
+<td>同上</td>
+</tr>
+<tr>
+<td><strong>70</strong></td>
+<td>魔炎法（Lv64〜単体では破陣法不使用）、バイオラ、ルインラ、破陣法（複数）、エナジードレイン、連環計（Lv66〜、ボス用。次のボスまで2分以上あれば雑魚にも）</td>
+<td>上記＋深謀遠慮の策（生命活性法より優先）、エーテルパクト（タンク集中回復）</td>
+<td>鼓舞激励の策、士気高揚の策</td>
+<td>同上</td>
+</tr>
+<tr>
+<td><strong>80</strong></td>
+<td>死炎法、蠱毒法、ルインラ、破陣法（5体以上）、エナジードレイン、連環計</td>
+<td>上記＋秘策（プル前に深謀遠慮と組む）、フェイブレッシング、野戦治療の陣（Lv78〜HoT追加で最優先フロー回復）、サモン・セラフィム＋コンソレイション（全体ダメージ用）。セラフィム中はエーテルパクト・フェイブレッシング・転化不可</td>
+<td>鼓舞激励の策、士気高揚の策</td>
+<td>同上</td>
+</tr>
+<tr>
+<td><strong>90</strong></td>
+<td>極炎法、蠱毒法、ルインラ、裂陣法（4体以上）、エナジードレイン、連環計</td>
+<td>上記＋生命回生法（プル前やエーテルパクト前）、疾風怒濤の計（長い軽減、ダンジョンではスプリントと交互）、展開戦術（Lv88〜90秒）</td>
+<td>鼓舞激励の策、士気高揚の策</td>
+<td>同上</td>
+</tr>
+<tr>
+<td><strong>100</strong></td>
+<td>極炎法、蠱毒法、ルインラ、裂陣法（5体以上）、エナジードレイン、連環計→埋伏の毒（Lv92〜。雑魚にも使う）</td>
+<td>上記＋セラフィズム（Lv100）、秘策60秒（Lv98〜）</td>
+<td>意気軒昂の策（Lv96〜）、鼓舞激励の策、セラフィズム中はマニフェステーション／アクセッション（秘策と併用不可）</td>
+<td>迅速魔40秒（Lv94〜）</td>
+</tr>
+</tbody>
+</table>
+<p>補足：The Balance Leveling Guide は埋伏の毒を「Lv94」と記述しているが、公式ガイドでは<strong>Lv92</strong>習得（特性「連環計効果アップ」もLv92）。本表は公式に従う。</p>
+<hr />
+<h2>7. 出典リスト</h2>
+<p>一次情報（公式）
+- ジョブガイド「学者」日本語版（Patch 7.5 表記）: https://jp.finalfantasyxiv.com/jobguide/scholar/
+- Job Guide "Scholar" 英語版（NA）: https://na.finalfantasyxiv.com/jobguide/scholar/</p>
+<p>二次情報（使い方・頻度）
+- The Balance – Scholar（Patch 7.4、Job Changes に 7.4 の蠱毒法 80→85 を記載）: https://www.thebalanceffxiv.com/jobs/healers/scholar/
+  - Basic Guide（7.4、2025-12-27 更新）: https://www.thebalanceffxiv.com/jobs/healers/scholar/basic-guide
+  - Openers（7.4、2025-12-27 更新。画像は Dawntrail 7.0 表記）: https://www.thebalanceffxiv.com/jobs/healers/scholar/openers
+    - 開幕画像: https://shyshys.github.io/healer-resources/resources/Scholar%20early%20dot%20refresh%20opener.png
+  - Skills Overview（7.4、2025-12-16 更新）: https://www.thebalanceffxiv.com/jobs/healers/scholar/skills-overview
+  - Leveling Guide（7.4、2025-12-27 更新）: https://www.thebalanceffxiv.com/jobs/healers/scholar/leveling-guide
+  - FAQ: https://www.thebalanceffxiv.com/jobs/healers/scholar/faq
+- game8「【FF14】学者のスキル回し(100レベル)【7.0黄金のレガシー】」（最終更新 2025.11.21）: https://game8.jp/ff14/614044
+- note「学者歴2ヶ月が考える学者の歩き方（7.05）」: https://note.com/takice/n/nc3ea1892977c
+- Icy Veins「Scholar Leveling Guide – Dawntrail 7.55」（2026-04-29 更新）: https://www.icy-veins.com/ffxiv/scholar-leveling</p>
+<p>参照したが古いため採用しなかったもの
+- ゲームランブー「学者のスキル回し(Lv80)【パッチ5.2】」（2020年）: https://gameranbu.jp/ff14/34769f2f202ccb678c75</p>
+<p>要確認事項（まとめ）
+- 7.5 パッチノートでの学者固有の変更の有無
+- Lv54未満のルインラ・破陣法の威力、Lv72〜93の蠱毒法DoT威力、Lv82〜93の極炎法威力（公式ガイドはLv100時点の数値のみ）
+- Lv88未満の展開戦術リキャスト、Lv94未満の迅速魔リキャスト
+- The Balance 開幕画像のGCD1／GCD7の「Dissipact」ラベル（どちらがエーテルフローか）
+- 連環計→埋伏の毒のホットバー上での表示挙動（置き換え表示か独立ボタンか）
+- エーテルパクト（フェイユニオン）の回復間隔（公式は「回復力300」「10ずつ消費」とのみ記載）</p><footer>2026-10-12 書き出し</footer></main></body></html>

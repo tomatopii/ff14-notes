@@ -1,0 +1,251 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FF14 取り返しのつかない要素</title><style>
+:root{--bg:#fbfaf7;--fg:#222;--muted:#666;--line:#ddd;--accent:#8a5a2b;--code:#f1efe9}
+@media (prefers-color-scheme:dark){:root{--bg:#1b1b1d;--fg:#e8e6e1;--muted:#9a9a9a;--line:#3a3a3d;--accent:#d9a86c;--code:#2a2a2e}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Meiryo","Noto Sans JP",system-ui,sans-serif;line-height:1.75;font-size:16px}
+main{max-width:860px;margin:0 auto;padding:32px 16px 64px}
+nav.top{font-size:14px;color:var(--muted);margin-bottom:8px}
+nav.top a{color:var(--accent);text-decoration:none}
+h1{font-size:1.8em;border-bottom:2px solid var(--accent);padding-bottom:6px;margin-top:0}
+h2{font-size:1.35em;margin-top:2em;border-left:5px solid var(--accent);padding-left:10px}
+h3{font-size:1.1em;margin-top:1.5em}
+a{color:var(--accent)}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14.5px;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:6px 10px;vertical-align:top;text-align:left}
+th{background:var(--code)}
+code{background:var(--code);padding:1px 5px;border-radius:4px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+pre{background:var(--code);padding:12px 14px;border-radius:8px;overflow-x:auto;border:1px solid var(--line)}
+pre code{background:none;padding:0}
+ul,ol{padding-left:1.5em}
+li{margin:3px 0}
+input[type=checkbox]{margin-right:6px;transform:scale(1.15)}
+footer{margin-top:48px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:12px}
+</style></head><body><main><nav class="top"><a href="00_index.html">FF14 ドキュメント索引</a> · <a href="01_naming.html">Tomatopii 命名リスト</a> · <a href="02_macros.html">FF14 マクロ集</a> · <a href="03_roadmap.html">FF14 ロードマップ</a> · <a href="04_events.html">FF14 開催中イベントまとめ（2026年10月）</a> · <a href="05_settings.html">FF14 設定・ギアセット・QoLまとめ</a> · <a href="06_irreversible.html">FF14 取り返しのつかない要素</a> · <a href="07_scholar_skills.html">FF14 学者（Scholar）アクション・特性リファレンス（パッチ7.5時点 / 2026年10月調査）</a></nav><h1>FF14 取り返しのつかない要素</h1>
+<p>Oct 11, 2026 · @tomatopii</p>
+<h2>結論</h2>
+<p>FF14は「やり直しが効く」設計。キャラの見た目・ジョブ・グランドカンパニー・クエスト報酬はすべて戻せる。本当に不可逆なのは <strong>「時間」に紐づくもの</strong>（期間限定・週制限・放置期限）と <strong>「消耗」するもの</strong>（消耗品・マテリア・染料・ギル）だけ。</p>
+<p>優先度で言えば：</p>
+<ol>
+<li>期間限定イベントは期間中に取る（最も影響が大きい）</li>
+<li>「使う」タイプのアイテムは捨てる前に使う</li>
+<li>ハウスを持ったら入る。それ以外は気にしなくていい</li>
+</ol>
+<h2>完全に不可逆（どうやっても戻らない）</h2>
+<table>
+<thead>
+<tr>
+<th>要素</th>
+<th>何が起きるか</th>
+<th>対策</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>期間限定イベントの報酬を期間中に取らなかった</td>
+<td>季節イベント・コラボの装備・エモート・マウント・家具。後日モグステーションで課金販売されることが多いが保証なし。ライトニング編など再開催されていないコラボもある</td>
+<td>イベントまとめの締切を守る</td>
+</tr>
+<tr>
+<td>イベント限定の実績</td>
+<td>「新生祭○年」など、その年にしか取れない実績。実績コンプは原理的に不可能なので、「今後取れるものを全部」が目標</td>
+<td>開催中のイベント実績は必ず拾う</td>
+</tr>
+<tr>
+<td>PvPランキング報酬</td>
+<td>シーズン上位者だけの報酬。シリーズ報酬（レベル到達で貰える方）は後でトロフィークリスタルで交換可になるので別</td>
+<td>狙わない。気にしない</td>
+</tr>
+<tr>
+<td>消耗品を使った・捨てた</td>
+<td>幻想薬、経験値の薬、イベントの交換券、待遇改善の巧、クエスト報酬の消耗品</td>
+<td>「使う」系は迷わず使う</td>
+</tr>
+<tr>
+<td>マウント・ミニオン・譜面・エモート・髪型の「解放アイテム」を未使用で捨てた</td>
+<td>使えば永久解放。使わずに捨てると入手ルートに戻るしかない（モグコレのマウントなどは次の開催まで待ち）</td>
+<td>入手したその場で使う</td>
+</tr>
+<tr>
+<td>マテリア</td>
+<td>禁断（オーバーメルド）失敗で消滅。装備からの「マテリア回収」も確率で失敗し、失敗分は消える。装備自体は壊れない</td>
+<td>今のレベル帯では禁断しない</td>
+</tr>
+<tr>
+<td>染料・ミラージュプリズム</td>
+<td>使えば消える。装備を捨てれば染色も消える</td>
+<td>安いので気にしない</td>
+</tr>
+<tr>
+<td>マテリア化・分解</td>
+<td>装備が消える。クエスト報酬装備なら買い戻せるが、ドロップ品は消滅</td>
+<td>見た目が欲しいものは先にドレッサーへ</td>
+</tr>
+<tr>
+<td>プレイヤー間トレード・手渡し・マケボ販売</td>
+<td>渡したものは戻らない。運営も介入しない</td>
+<td>トレード画面は確認してから</td>
+</tr>
+<tr>
+<td>ハウスの自動撤去後の家具の回収期限</td>
+<td>45日間家に入らないと撤去。家具と金庫のギルは「ハウジング管理人」から35日以内に回収。それを過きると全滅。土地そのものは戻らない（抑選し直し）</td>
+<td>長期離脱前に家に入る。アパルトメントは撤去なし</td>
+</tr>
+<tr>
+<td>リテイナーの解雇</td>
+<td>預けていたアイテム・ギルごと消える（警告は出る）</td>
+<td>解雇前に空にする</td>
+</tr>
+<tr>
+<td>キャラクター削除</td>
+<td>復旧不可</td>
+<td>言うまでもなく</td>
+</tr>
+<tr>
+<td>スタート都市・誕生日・守護神・ワールド初期選択</td>
+<td>スタート都市は変更不可だがゲーム上の影響は序盤のみ。誕生日・守護神は幻想薬で変更可。ワールドは課金で移転可</td>
+<td>気にしない</td>
+</tr>
+<tr>
+<td>メインクエストの選択肢</td>
+<td>ストーリー分岐はない。選択で失うものはない</td>
+<td>好きに選ぶ</td>
+</tr>
+<tr>
+<td>旧トームストーンの廃止</td>
+<td>拡張パッチで古いトームストーンが廃止・変換される。使い切っておかないと無駄に</td>
+<td>8.0前（2026年末）に使い切る</td>
+</tr>
+<tr>
+<td>週制限コンテンツのその週の分</td>
+<td>零式の宝箱、週制限トームストーン。その週にやらなければ消える。後で取り返せない</td>
+<td>高難度を始めたら意識</td>
+</tr>
+<tr>
+<td>ジョブ指定トークンの交換ミス</td>
+<td>零式の武器石などで間違ったジョブの装備を選ぶと、数週分のトークンが無駄になる。GMでも戻らない</td>
+<td>交換画面でジョブ名を必ず読む</td>
+</tr>
+</tbody>
+</table>
+<h2>課金・条件付きで戻せる</h2>
+<table>
+<thead>
+<tr>
+<th>要素</th>
+<th>戻し方</th>
+<th>費用・条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>キャラクター名</td>
+<td>モグステーション「キャラクター名変更」</td>
+<td>1,100円。フレンドリストは維持</td>
+</tr>
+<tr>
+<td>種族・性別・容姿・声・誕生日・守護神</td>
+<td>幻想薬</td>
+<td>課金（約1,100円）。イベントで無料配布されることもある。髪型・髪色・化粧は美容師でいつでも無料</td>
+</tr>
+<tr>
+<td>ワールド（サーバー）</td>
+<td>ワールド移転サービス</td>
+<td>課金。ハウスは持っていけない。遊びに行くだけならデータセンタートラベルで無料</td>
+</tr>
+<tr>
+<td>リテイナーの名前・容姿・性格</td>
+<td>幻想薬[リテイナー]</td>
+<td>錬金術師製作、マケボで数千ギル。非課金</td>
+</tr>
+<tr>
+<td>リテイナーのクラス</td>
+<td>クラス変更</td>
+<td>元クラスのレベルは保持され、戻せば元通り（要確認）</td>
+</tr>
+<tr>
+<td>グランドカンパニー</td>
+<td>移籍</td>
+<td>少甲士以上で可。初回無料、2回目以降5万ギル、再移籍は15日後。元GCの階級・軍票・小隊は保持され、戻れば復元</td>
+</tr>
+<tr>
+<td>フリーカンパニー</td>
+<td>脱退・再加入</td>
+<td>無料。FC貢献度は失う</td>
+</tr>
+<tr>
+<td>入手済みの季節イベント・コラボ装備</td>
+<td>遺失物管理人</td>
+<td>少額ギル。一度でも入手していれば可</td>
+</tr>
+<tr>
+<td>過去のPvPシリーズ薂酬</td>
+<td>トロフィークリスタル交換</td>
+<td>7.2以降、終了したシリーズが順次ラインアップに追加される（数シリーズ遅れ）</td>
+</tr>
+<tr>
+<td>ハウスの土地</td>
+<td>引っ越し</td>
+<td>別の土地へ移れる。家具は持っていける。元の土地の購入額は新しい土地代から差し引かれる</td>
+</tr>
+<tr>
+<td>死者の宮殿などのセーブデータ</td>
+<td>削除すると強化値・階層が消える</td>
+<td>消す前に確認。2枠あるので片方は残す</td>
+</tr>
+<tr>
+<td>エターナルバンド（結婚）</td>
+<td>解消すると指輪・特典が無効</td>
+<td>再度結ぶには再課金</td>
+</tr>
+</tbody>
+</table>
+<h2>不可逆に見えて戻せる（誤解されがち）</h2>
+<ul>
+<li><strong>クエスト報酬の装備・アイテム</strong>（メイン・サブ・ジョブクエ・AF装備・ソウルクリスタル）：遺失物管理人で買い戻せる。アイテム説明の「SHOP販売価格（購入条件付）」が目印。選択式報酬は選んだもののみ</li>
+<li><strong>実績報酬</strong>：ジョナサス（グリダニア旧市街）で何度でも再入手</li>
+<li><strong>マウント・ミニオン・エモート・譜面・髪型・称号</strong>：一度使えば「解放」状態になり、失うことはない</li>
+<li><strong>ジョブの選択</strong>：全ジョブを1キャラで上げられる。最初のクラス選びに意味はない</li>
+<li><strong>スキル・ステータス振り</strong>：存在しない。レベルで自動</li>
+<li><strong>蛮族の友好度・討伐手帳・探検手帳</strong>：下がらない。後回しにしても失わない</li>
+<li><strong>トームストーン装備・マケボ品・クラフト品</strong>：通貨を払えば買い直せる</li>
+<li><strong>ダンジョン・レイドのドロップ装備</strong>：もう一度行けば落ちる（週制限があるものを除く）</li>
+<li><strong>クエストを放棄した</strong>：受注し直せる。メインクエストは放棄できない</li>
+<li><strong>ショップに売った</strong>：その場で「買い戻し」が10件まで可。エリア移動で消える</li>
+<li><strong>スタート都市ごとの最初の装備</strong>：2014年頃は不可逆とされていたが、現在はクエスト報酬として買い戻せる</li>
+<li><strong>チョコボの色</strong>：餓をあげ直せば何度でも変えられる。軍票で買ったバーディング（鯈）も実績・購入で再入手可</li>
+</ul>
+<h2>事故ったときの救済（GMコール）</h2>
+<p>誤って捨てた・売った・使ったアイテムは、条件付きで運営が戻してくれる。</p>
+<ul>
+<li><strong>期限：発生からリアル1週間以内</strong></li>
+<li><strong>回数：キャラあたり1回限り</strong>（「一生に一度の救済」。安いアイテムで使わない）</li>
+<li>対象外：プレイヤー間のトレードトラブル、トークン交換のジョブ間違い（前例あり、救済されにくい）</li>
+<li>手順：システムメニュー → サポート＆ニュース → FAQ検索「アイテムを戻す」→「解決しないので問い合わせる」</li>
+<li>ログをスクショで残すと通りやすい（いつ・何を・どうしたか）</li>
+</ul>
+<p>要は「本当に痛いものをやらかしたときのために取っておくカード」。</p>
+<h2>今の自分（新生クリア・学者Lv53）が気をつけること</h2>
+<ul>
+<li><input type=checkbox> 守護天節（10/15〜11/2）・Fall Guys（〜10/27）・モグコレ Part1（〜10/19）の報酬を期間内に取る。実績も忘れずに</li>
+<li><input type=checkbox> モグコレで取ったマウント・ミニオンは受け取ったその場で使う</li>
+<li><input type=checkbox> 「使う」系アイテム（譜面・エモート・髪型・ミニオン）は捨てる前に必ず使う</li>
+<li><input type=checkbox> 詩学は2,000でカンスト。貯めすぎずに装備に変える。8.0前に旧トームストーンは使い切る</li>
+<li><input type=checkbox> リテイナーを解雇するときは先に中身を空にする</li>
+<li><input type=checkbox> ハウスを持ったら「45日」を記憶する。長期離脱前に必ず入る</li>
+<li><input type=checkbox> 禁断とマテリア回収は、失敗でマテリアが消えると知った上でやる</li>
+<li><input type=checkbox> トークン交換でジョブ名を必ず読む（零式を始めたら）</li>
+<li><input type=checkbox> GMコールの救済は1回限り。安いもので使わない</li>
+</ul>
+<p>それ以外は、捨てても売っても選んでも戻せる。</p>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q12125125887">ff14取り返しのつかないこと（Yahoo!知恵袋、2014年）</a></li>
+<li><a href="https://trozo.hateblo.jp/entry/FF14/Beginner/Character-Creation">キャラメイク取り返しのつかない要素（ファミ蔵通信）</a></li>
+<li><a href="https://neko14.com/2021/01/06/post-2018/">取り返しのつかないアイテムを売った・捨てた場合（neko14）</a></li>
+<li><a href="https://ameblo.jp/nonbiriff14/entry-12725274915.html">グランドカンパニー移籍の仕様（ameblo）</a></li>
+<li><a href="https://game8.jp/ff14/456995">マテリア装着・回収（game8）</a></li>
+<li><a href="https://expertbeacon.com/how-long-does-it-take-to-lose-your-house-in-ff14/">ハウス自動撤去45日・家具回収35日（expertbeacon）</a></li>
+<li><a href="https://game8.jp/ff14/296549">キャラクター名変更（game8）</a></li>
+<li><a href="https://hatsunagiyuunagi.livedoor.blog/archives/27250278.html">過去のPvPシリーズ報酬がトロフィークリスタルで交換可に（7.2）</a></li>
+<li><a href="https://connietarte.com/useful/retainer-fantasia/">リテイナー幻想薬の使い方</a></li>
+</ul><footer>2026-10-12 書き出し</footer></main></body></html>

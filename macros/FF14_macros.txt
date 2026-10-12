@@ -1,0 +1,529 @@
+FF14 マクロ集（Tomatopii Zulu / 学者）2026-10-12
+挨拶は通常の文字。海外の人と組むなら、マクロ編集画面で文言を消して Tab → 定型文辞書から選ぶと自動翻訳される
+
+==================== 共有タブ ====================
+
+----- 0 挨拶：入場 -----
+/macrolock
+/macroicon "手を振る" emote
+/macroerror off
+/party よろしくお願いします！
+/alliance よろしくお願いします！
+/wave motion
+
+----- 1 挨拶：退場 -----
+/macrolock
+/macroicon "お辞儀する" emote
+/macroerror off
+/party ありがとうございました！お疲れ様でした！
+/alliance ありがとうございました！
+/bow motion
+
+----- 2 挨拶：謝罪 -----
+/macrolock
+/macroicon "ひざまずく" emote
+/macroerror off
+/party すみません、失礼しました。
+/bow motion
+
+----- 3 挨拶：お礼 -----
+/macrolock
+/macroicon "拍手する" emote
+/macroerror off
+/party ありがとうございます！
+/clap motion
+
+----- 10 切替：学者 -----
+/macroicon 2 gearset
+/macroerror off
+/gearset change "学者"
+/hudlayout 2
+
+----- 11 切替：モンク -----
+/macroicon 1 gearset
+/macroerror off
+/gearset change "モンク"
+/hudlayout 1
+
+==================== 個別タブ（学者） ====================
+
+----- 0 学者：蘇生 -----
+/macrolock
+/macroicon リザレク
+/macroerror off
+/action 迅速魔 <wait.1>
+/action リザレク <mo>
+/action リザレク <t>
+/party リザレク → <t>
+
+----- 1 学者：エスナ -----
+/macroicon エスナ
+/macroerror off
+/action エスナ <mo>
+/action エスナ <t>
+
+----- 2 学者：鼓舞 -----
+/macroicon 鼓舞激励の策
+/macroerror off
+/action 鼓舞激励の策 <mo>
+/action 鼓舞激励の策 <t>
+/action 鼓舞激励の策 <2>
+
+----- 3 学者：生命活性 -----
+/macroicon 生命活性法
+/macroerror off
+/action 生命活性法 <mo>
+/action 生命活性法 <t>
+
+----- 4 学者：フィジク -----
+/macroicon フィジク
+/macroerror off
+/action フィジク <mo>
+/action フィジク <t>
+
+----- 5 学者：入場 -----
+/macrolock
+/macroicon サモン・エオス
+/macroerror off
+/action サモン・エオス
+/party よろしくお願いします！
+/alliance よろしくお願いします！
+/wave motion
+
+----- 6 学者：陣（マウス位置に即設置） -----
+/macroicon 野戦治療の陣
+/macroerror off
+/action 野戦治療の陣 gtoff
+/action 野戦治療の陣 <me>
+
+----- 7 学者：救出（Lv48） -----
+/macroicon 救出
+/macroerror off
+/action 救出 <mo>
+/action 救出 <t>
+
+----- 8 学者：展開（Lv56） -----
+/macroicon 展開戦術
+/macroerror off
+/action 展開戦術 <mo>
+/action 展開戦術 <t>
+/action 展開戦術 <2>
+
+----- 9 学者：深謀（Lv62） -----
+/macroicon 深謀遠慮の策
+/macroerror off
+/action 深謀遠慮の策 <mo>
+/action 深謀遠慮の策 <t>
+/action 深謀遠慮の策 <2>
+
+----- 41 学者：エーテルパクト（Lv70） -----
+/macroicon エーテルパクト
+/macroerror off
+/action エーテルパクト <mo>
+/action エーテルパクト <t>
+/action エーテルパクト <2>
+
+----- 40 学者：回生（Lv86） -----
+/macroicon 生命回生法
+/macroerror off
+/action 生命回生法 <mo>
+/action 生命回生法 <t>
+
+==================== 個別タブ（学者 PvP） ====================
+
+----- 50 PvP：鼓舞 -----
+/macroicon 鼓舞激励の策 pvpaction
+/macroerror off
+/pvpaction 鼓舞激励の策 <mo>
+/pvpaction 鼓舞激励の策 <t>
+
+----- 51 PvP：展開 -----
+/macroicon 展開戦術 pvpaction
+/macroerror off
+/pvpaction 展開戦術 <mo>
+/pvpaction 展開戦術 <t>
+
+----- 52 PvP：ヒール（FL/RWのロールアクション） -----
+/macroicon ヒール pvpaction
+/macroerror off
+/pvpaction ヒール <mo>
+/pvpaction ヒール <t>
+
+==================== パーティ番号別 ====================
+
+----- 10 学者：フィジク1 -----
+/macroicon フィジク
+/macroerror off
+/action フィジク <1>
+
+----- 11 学者：フィジク2 -----
+/macroicon フィジク
+/macroerror off
+/action フィジク <2>
+
+----- 12 学者：フィジク3 -----
+/macroicon フィジク
+/macroerror off
+/action フィジク <3>
+
+----- 13 学者：フィジク4 -----
+/macroicon フィジク
+/macroerror off
+/action フィジク <4>
+
+----- 14 学者：フィジク5 -----
+/macroicon フィジク
+/macroerror off
+/action フィジク <5>
+
+----- 15 学者：フィジク6 -----
+/macroicon フィジク
+/macroerror off
+/action フィジク <6>
+
+----- 16 学者：フィジク7 -----
+/macroicon フィジク
+/macroerror off
+/action フィジク <7>
+
+----- 17 学者：フィジク8 -----
+/macroicon フィジク
+/macroerror off
+/action フィジク <8>
+
+----- 20 学者：エスナ1 -----
+/macroicon エスナ
+/macroerror off
+/action エスナ <1>
+
+----- 21 学者：エスナ2 -----
+/macroicon エスナ
+/macroerror off
+/action エスナ <2>
+
+----- 22 学者：エスナ3 -----
+/macroicon エスナ
+/macroerror off
+/action エスナ <3>
+
+----- 23 学者：エスナ4 -----
+/macroicon エスナ
+/macroerror off
+/action エスナ <4>
+
+----- 24 学者：エスナ5 -----
+/macroicon エスナ
+/macroerror off
+/action エスナ <5>
+
+----- 25 学者：エスナ6 -----
+/macroicon エスナ
+/macroerror off
+/action エスナ <6>
+
+----- 26 学者：エスナ7 -----
+/macroicon エスナ
+/macroerror off
+/action エスナ <7>
+
+----- 27 学者：エスナ8 -----
+/macroicon エスナ
+/macroerror off
+/action エスナ <8>
+
+----- 31 学者：蘇生2 -----
+/macrolock
+/macroicon リザレク
+/macroerror off
+/action 迅速魔 <wait.1>
+/action リザレク <2>
+/party リザレク → <2>
+
+----- 32 学者：蘇生3 -----
+/macrolock
+/macroicon リザレク
+/macroerror off
+/action 迅速魔 <wait.1>
+/action リザレク <3>
+/party リザレク → <3>
+
+----- 33 学者：蘇生4 -----
+/macrolock
+/macroicon リザレク
+/macroerror off
+/action 迅速魔 <wait.1>
+/action リザレク <4>
+/party リザレク → <4>
+
+----- 34 学者：蘇生5 -----
+/macrolock
+/macroicon リザレク
+/macroerror off
+/action 迅速魔 <wait.1>
+/action リザレク <5>
+/party リザレク → <5>
+
+----- 35 学者：蘇生6 -----
+/macrolock
+/macroicon リザレク
+/macroerror off
+/action 迅速魔 <wait.1>
+/action リザレク <6>
+/party リザレク → <6>
+
+----- 36 学者：蘇生7 -----
+/macrolock
+/macroicon リザレク
+/macroerror off
+/action 迅速魔 <wait.1>
+/action リザレク <7>
+/party リザレク → <7>
+
+----- 37 学者：蘇生8 -----
+/macrolock
+/macroicon リザレク
+/macroerror off
+/action 迅速魔 <wait.1>
+/action リザレク <8>
+/party リザレク → <8>
+
+----- 40 学者：鼓舞1 -----
+/macroicon 鼓舞激励の策
+/macroerror off
+/action 鼓舞激励の策 <1>
+
+----- 41 学者：鼓舞2 -----
+/macroicon 鼓舞激励の策
+/macroerror off
+/action 鼓舞激励の策 <2>
+
+----- 42 学者：鼓舞3 -----
+/macroicon 鼓舞激励の策
+/macroerror off
+/action 鼓舞激励の策 <3>
+
+----- 43 学者：鼓舞4 -----
+/macroicon 鼓舞激励の策
+/macroerror off
+/action 鼓舞激励の策 <4>
+
+----- 44 学者：鼓舞5 -----
+/macroicon 鼓舞激励の策
+/macroerror off
+/action 鼓舞激励の策 <5>
+
+----- 45 学者：鼓舞6 -----
+/macroicon 鼓舞激励の策
+/macroerror off
+/action 鼓舞激励の策 <6>
+
+----- 46 学者：鼓舞7 -----
+/macroicon 鼓舞激励の策
+/macroerror off
+/action 鼓舞激励の策 <7>
+
+----- 47 学者：鼓舞8 -----
+/macroicon 鼓舞激励の策
+/macroerror off
+/action 鼓舞激励の策 <8>
+
+----- 50 学者：生命活性1 -----
+/macroicon 生命活性法
+/macroerror off
+/action 生命活性法 <1>
+
+----- 51 学者：生命活性2 -----
+/macroicon 生命活性法
+/macroerror off
+/action 生命活性法 <2>
+
+----- 52 学者：生命活性3 -----
+/macroicon 生命活性法
+/macroerror off
+/action 生命活性法 <3>
+
+----- 53 学者：生命活性4 -----
+/macroicon 生命活性法
+/macroerror off
+/action 生命活性法 <4>
+
+----- 54 学者：生命活性5 -----
+/macroicon 生命活性法
+/macroerror off
+/action 生命活性法 <5>
+
+----- 55 学者：生命活性6 -----
+/macroicon 生命活性法
+/macroerror off
+/action 生命活性法 <6>
+
+----- 56 学者：生命活性7 -----
+/macroicon 生命活性法
+/macroerror off
+/action 生命活性法 <7>
+
+----- 57 学者：生命活性8 -----
+/macroicon 生命活性法
+/macroerror off
+/action 生命活性法 <8>
+
+----- 60 学者：救出1 -----
+/macroicon 救出
+/macroerror off
+/action 救出 <1>
+
+----- 61 学者：救出2 -----
+/macroicon 救出
+/macroerror off
+/action 救出 <2>
+
+----- 62 学者：救出3 -----
+/macroicon 救出
+/macroerror off
+/action 救出 <3>
+
+----- 63 学者：救出4 -----
+/macroicon 救出
+/macroerror off
+/action 救出 <4>
+
+----- 64 学者：救出5 -----
+/macroicon 救出
+/macroerror off
+/action 救出 <5>
+
+----- 65 学者：救出6 -----
+/macroicon 救出
+/macroerror off
+/action 救出 <6>
+
+----- 66 学者：救出7 -----
+/macroicon 救出
+/macroerror off
+/action 救出 <7>
+
+----- 67 学者：救出8 -----
+/macroicon 救出
+/macroerror off
+/action 救出 <8>
+
+----- 70 学者：展開1 -----
+/macroicon 展開戦術
+/macroerror off
+/action 展開戦術 <1>
+
+----- 71 学者：展開2 -----
+/macroicon 展開戦術
+/macroerror off
+/action 展開戦術 <2>
+
+----- 72 学者：展開3 -----
+/macroicon 展開戦術
+/macroerror off
+/action 展開戦術 <3>
+
+----- 73 学者：展開4 -----
+/macroicon 展開戦術
+/macroerror off
+/action 展開戦術 <4>
+
+----- 74 学者：展開5 -----
+/macroicon 展開戦術
+/macroerror off
+/action 展開戦術 <5>
+
+----- 75 学者：展開6 -----
+/macroicon 展開戦術
+/macroerror off
+/action 展開戦術 <6>
+
+----- 76 学者：展開7 -----
+/macroicon 展開戦術
+/macroerror off
+/action 展開戦術 <7>
+
+----- 77 学者：展開8 -----
+/macroicon 展開戦術
+/macroerror off
+/action 展開戦術 <8>
+
+----- 80 学者：深謀1 -----
+/macroicon 深謀遠慮の策
+/macroerror off
+/action 深謀遠慮の策 <1>
+
+----- 81 学者：深謀2 -----
+/macroicon 深謀遠慮の策
+/macroerror off
+/action 深謀遠慮の策 <2>
+
+----- 82 学者：深謀3 -----
+/macroicon 深謀遠慮の策
+/macroerror off
+/action 深謀遠慮の策 <3>
+
+----- 83 学者：深謀4 -----
+/macroicon 深謀遠慮の策
+/macroerror off
+/action 深謀遠慮の策 <4>
+
+----- 84 学者：深謀5 -----
+/macroicon 深謀遠慮の策
+/macroerror off
+/action 深謀遠慮の策 <5>
+
+----- 85 学者：深謀6 -----
+/macroicon 深謀遠慮の策
+/macroerror off
+/action 深謀遠慮の策 <6>
+
+----- 86 学者：深謀7 -----
+/macroicon 深謀遠慮の策
+/macroerror off
+/action 深謀遠慮の策 <7>
+
+----- 87 学者：深謀8 -----
+/macroicon 深謀遠慮の策
+/macroerror off
+/action 深謀遠慮の策 <8>
+
+----- 90 学者：パクト1 -----
+/macroicon エーテルパクト
+/macroerror off
+/action エーテルパクト <1>
+
+----- 91 学者：パクト2 -----
+/macroicon エーテルパクト
+/macroerror off
+/action エーテルパクト <2>
+
+----- 92 学者：パクト3 -----
+/macroicon エーテルパクト
+/macroerror off
+/action エーテルパクト <3>
+
+----- 93 学者：パクト4 -----
+/macroicon エーテルパクト
+/macroerror off
+/action エーテルパクト <4>
+
+----- 94 学者：パクト5 -----
+/macroicon エーテルパクト
+/macroerror off
+/action エーテルパクト <5>
+
+----- 95 学者：パクト6 -----
+/macroicon エーテルパクト
+/macroerror off
+/action エーテルパクト <6>
+
+----- 96 学者：パクト7 -----
+/macroicon エーテルパクト
+/macroerror off
+/action エーテルパクト <7>
+
+----- 97 学者：パクト8 -----
+/macroicon エーテルパクト
+/macroerror off
+/action エーテルパクト <8>
+
