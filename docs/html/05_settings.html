@@ -45,9 +45,9 @@ footer{margin-top:48px;color:var(--muted);font-size:13px;border-top:1px solid va
 <li>ソウルクリスタル（ジョブ）もギアセットに含まれる。Lv30でジョブになったら登録し直す</li>
 </ul>
 <p><strong>マクロは番号ではなく名前で</strong></p>
-<pre><code>/micon &quot;白魔道士&quot; gearset
+<pre><code>/macroicon &quot;白魔道士&quot; gearset
+/macroerror off
 /gearset change &quot;白魔道士&quot;
-/hudlayout 1
 </code></pre>
 <p>番号指定だと並びを動かしたときにマクロが壊れる。名前指定なら動かしても平気。</p>
 <h2>HUD・キーバインド</h2>
@@ -57,27 +57,33 @@ footer{margin-top:48px;color:var(--muted);font-size:13px;border-top:1px solid va
 <tr>
 <th>HUD</th>
 <th>用途</th>
+<th>切替マクロ</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1</td>
-<td>ヒーラー</td>
+<td>ソロ</td>
+<td>共有12（アイコン：マーカー1）</td>
 </tr>
 <tr>
 <td>2</td>
-<td>その他の戦闘ジョブ</td>
+<td>4人（ライトパーティ）</td>
+<td>共有13（マーカー2）</td>
 </tr>
 <tr>
 <td>3</td>
-<td>クラフター</td>
+<td>8人（フルパーティ・アライアンス）</td>
+<td>共有14（マーカー3）</td>
 </tr>
 <tr>
 <td>4</td>
-<td>ギャザラー</td>
+<td>予備</td>
+<td>―</td>
 </tr>
 </tbody>
 </table>
+<p>HUDはジョブではなくパーティの人数で切り替える。ジョブ切替マクロには <code>/hudlayout</code> を入れない。</p>
 <p>HUDの基本：ホットバーは画面中央下、パーティリストは左寄り中央、自分のHP・ターゲット情報・キャストバーは中央寄りに集める。敵の詠唱バーはターゲット情報を分割表示にして大きく。ホットバーのサイズは120%以上。</p>
 <p><strong>12ボタンマウスの層</strong>（押す頻度で分ける）</p>
 <table>
@@ -605,4 +611,4 @@ footer{margin-top:48px;color:var(--muted);font-size:13px;border-top:1px solid va
 <li>ターゲットHPの数値表示をオン</li>
 <li>食事を買って食べる（Lv39なら安いものでOK）</li>
 </ol>
-<p>次にログインしたら：今の戦闘クラスのギアセットを登録し、キャラクター設定をサーバーにバックアップ。</p><footer>2026-10-12 書き出し</footer></main></body></html>
+<p>次にログインしたら：今の戦闘クラスのギアセットを登録し、キャラクター設定をサーバーにバックアップ。</p><footer>2026-10-14 書き出し</footer></main></body></html>

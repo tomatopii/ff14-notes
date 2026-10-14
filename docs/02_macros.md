@@ -2,7 +2,7 @@
 
 Oct 8, 2026 · @tomatopii
 
-## 一覧（16個）
+## 一覧（19個）
 
 | 保存先 | 番号 | 名前 | 置き場所 |
 | --- | --- | --- | --- |
@@ -12,6 +12,9 @@ Oct 8, 2026 · @tomatopii
 | 共有 | 3 | 挨拶：お礼 | Ctrl層 |
 | 共有 | 10 | 切替：学者 | Ctrl層 |
 | 共有 | 11 | 切替：モンク | Ctrl層 |
+| 共有 | 12 | HUD：ソロ | Ctrl層 |
+| 共有 | 13 | HUD：4人 | Ctrl層 |
+| 共有 | 14 | HUD：8人 | Ctrl層 |
 | 個別 | 0 | 学者：蘇生 | Alt層 |
 | 個別 | 1 | 学者：エスナ | Alt層 |
 | 個別 | 2 | 学者：鼓舞 | Alt層 |
@@ -75,7 +78,6 @@ Oct 8, 2026 · @tomatopii
 /macroicon 2 gearset
 /macroerror off
 /gearset change "学者"
-/hudlayout 2
 ```
 
 **11　切替：モンク**
@@ -84,8 +86,38 @@ Oct 8, 2026 · @tomatopii
 /macroicon 1 gearset
 /macroerror off
 /gearset change "モンク"
-/hudlayout 1
 ```
+
+HUDは人数で切り替えるので、ジョブ切替マクロには `/hudlayout` を入れない。
+
+**12　HUD：ソロ**
+
+```
+/macroicon "1" waymark
+/macroerror off
+/hudlayout 1
+/echo HUD：ソロ
+```
+
+**13　HUD：4人**
+
+```
+/macroicon "2" waymark
+/macroerror off
+/hudlayout 2
+/echo HUD：4人
+```
+
+**14　HUD：8人**
+
+```
+/macroicon "3" waymark
+/macroerror off
+/hudlayout 3
+/echo HUD：8人
+```
+
+アイコンはフィールドマーカーの数字。`/echo` は自分のログにだけ出る。
 
 ## 個別（学者）
 

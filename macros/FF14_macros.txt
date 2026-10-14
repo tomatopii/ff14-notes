@@ -37,13 +37,29 @@ FF14 マクロ集（Tomatopii Zulu / 学者）2026-10-12
 /macroicon 2 gearset
 /macroerror off
 /gearset change "学者"
-/hudlayout 2
 
 ----- 11 切替：モンク -----
 /macroicon 1 gearset
 /macroerror off
 /gearset change "モンク"
+
+----- 12 HUD：ソロ -----
+/macroicon "1" waymark
+/macroerror off
 /hudlayout 1
+/echo HUD：ソロ
+
+----- 13 HUD：4人 -----
+/macroicon "2" waymark
+/macroerror off
+/hudlayout 2
+/echo HUD：4人
+
+----- 14 HUD：8人 -----
+/macroicon "3" waymark
+/macroerror off
+/hudlayout 3
+/echo HUD：8人
 
 ==================== 個別タブ（学者） ====================
 

@@ -22,7 +22,7 @@ input[type=checkbox]{margin-right:6px;transform:scale(1.15)}
 footer{margin-top:48px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:12px}
 </style></head><body><main><nav class="top"><a href="00_index.html">FF14 ドキュメント索引</a> · <a href="01_naming.html">Tomatopii 命名リスト</a> · <a href="02_macros.html">FF14 マクロ集</a> · <a href="03_roadmap.html">FF14 ロードマップ</a> · <a href="04_events.html">FF14 開催中イベントまとめ（2026年10月）</a> · <a href="05_settings.html">FF14 設定・ギアセット・QoLまとめ</a> · <a href="06_irreversible.html">FF14 取り返しのつかない要素</a> · <a href="07_scholar_skills.html">FF14 学者（Scholar）アクション・特性リファレンス（パッチ7.5時点 / 2026年10月調査）</a></nav><h1>FF14 マクロ集</h1>
 <p>Oct 8, 2026 · @tomatopii</p>
-<h2>一覧（16個）</h2>
+<h2>一覧（19個）</h2>
 <table>
 <thead>
 <tr>
@@ -67,6 +67,24 @@ footer{margin-top:48px;color:var(--muted);font-size:13px;border-top:1px solid va
 <td>共有</td>
 <td>11</td>
 <td>切替：モンク</td>
+<td>Ctrl層</td>
+</tr>
+<tr>
+<td>共有</td>
+<td>12</td>
+<td>HUD：ソロ</td>
+<td>Ctrl層</td>
+</tr>
+<tr>
+<td>共有</td>
+<td>13</td>
+<td>HUD：4人</td>
+<td>Ctrl層</td>
+</tr>
+<tr>
+<td>共有</td>
+<td>14</td>
+<td>HUD：8人</td>
 <td>Ctrl層</td>
 </tr>
 <tr>
@@ -167,14 +185,32 @@ footer{margin-top:48px;color:var(--muted);font-size:13px;border-top:1px solid va
 <pre><code>/macroicon 2 gearset
 /macroerror off
 /gearset change &quot;学者&quot;
-/hudlayout 2
 </code></pre>
 <p><strong>11　切替：モンク</strong></p>
 <pre><code>/macroicon 1 gearset
 /macroerror off
 /gearset change &quot;モンク&quot;
-/hudlayout 1
 </code></pre>
+<p>HUDは人数で切り替えるので、ジョブ切替マクロには <code>/hudlayout</code> を入れない。</p>
+<p><strong>12　HUD：ソロ</strong></p>
+<pre><code>/macroicon &quot;1&quot; waymark
+/macroerror off
+/hudlayout 1
+/echo HUD：ソロ
+</code></pre>
+<p><strong>13　HUD：4人</strong></p>
+<pre><code>/macroicon &quot;2&quot; waymark
+/macroerror off
+/hudlayout 2
+/echo HUD：4人
+</code></pre>
+<p><strong>14　HUD：8人</strong></p>
+<pre><code>/macroicon &quot;3&quot; waymark
+/macroerror off
+/hudlayout 3
+/echo HUD：8人
+</code></pre>
+<p>アイコンはフィールドマーカーの数字。<code>/echo</code> は自分のログにだけ出る。</p>
 <h2>個別（学者）</h2>
 <p><strong>0　学者：蘇生</strong></p>
 <pre><code>/macrolock
@@ -405,4 +441,4 @@ footer{margin-top:48px;color:var(--muted);font-size:13px;border-top:1px solid va
 </tr>
 </tbody>
 </table>
-<p>出典：<a href="https://jp.finalfantasyxiv.com/lodestone/playguide/db/text_command/e6e219e1adc/">/macroicon</a>、<a href="https://jp.finalfantasyxiv.com/lodestone/playguide/db/text_command/?category2=7">マクロ専用コマンド</a>、<a href="https://jp.finalfantasyxiv.com/lodestone/playguide/db/text_command/?category2=9">エモートコマンド</a></p><footer>2026-10-12 書き出し</footer></main></body></html>
+<p>出典：<a href="https://jp.finalfantasyxiv.com/lodestone/playguide/db/text_command/e6e219e1adc/">/macroicon</a>、<a href="https://jp.finalfantasyxiv.com/lodestone/playguide/db/text_command/?category2=7">マクロ専用コマンド</a>、<a href="https://jp.finalfantasyxiv.com/lodestone/playguide/db/text_command/?category2=9">エモートコマンド</a></p><footer>2026-10-14 書き出し</footer></main></body></html>
